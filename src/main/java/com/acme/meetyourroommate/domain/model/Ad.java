@@ -1,6 +1,7 @@
 package com.acme.meetyourroommate.domain.model;
 
 
+import io.swagger.v3.oas.annotations.tags.Tag;
 import org.hibernate.annotations.OnDelete;
 import org.hibernate.annotations.OnDeleteAction;
 

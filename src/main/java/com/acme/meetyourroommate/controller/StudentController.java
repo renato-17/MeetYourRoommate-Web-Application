@@ -1,18 +1,13 @@
 package com.acme.meetyourroommate.controller;
 
 import com.acme.meetyourroommate.domain.model.Student;
-<<<<<<< HEAD
 import com.acme.meetyourroommate.domain.service.StudentService;
 import com.acme.meetyourroommate.resource.SaveStudentResource;
 import com.acme.meetyourroommate.resource.StudentResource;
-=======
 import com.acme.meetyourroommate.domain.model.Team;
-import com.acme.meetyourroommate.domain.service.StudentService;
-import com.acme.meetyourroommate.resource.SaveStudentResource;
 import com.acme.meetyourroommate.resource.SaveTeamResource;
-import com.acme.meetyourroommate.resource.StudentResource;
-import org.hibernate.loader.plan.build.internal.LoadGraphLoadPlanBuildingStrategy;
->>>>>>> MeetYourRoommate/RenatoArredondo
+import io.swagger.v3.oas.annotations.Operation;
+import io.swagger.v3.oas.annotations.tags.Tag;
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
@@ -25,6 +20,7 @@ import javax.validation.Valid;
 import java.util.List;
 import java.util.stream.Collectors;
 
+@Tag(name = "students",description = "Students API")
 @RestController
 @RequestMapping("/api")
 public class StudentController {
@@ -35,6 +31,7 @@ public class StudentController {
     @Autowired
     private StudentService studentService;
 
+    @Operation(summary = "Get Students", description = "Get All Students", tags = {"students"})
     @GetMapping("/students")
     public Page<StudentResource> getAllStudents(Pageable pageable){
         Page<Student> studentPage = studentService.getAllStudents(pageable);
@@ -47,8 +44,7 @@ public class StudentController {
         return new PageImpl<>(resources,pageable, resources.size());
     }
 
-<<<<<<< HEAD
-=======
+    @Operation(summary = "Get Students by Team", description = "Get All Students by Team Id", tags = {"students"})
     @GetMapping("/teams/{teamId}/students")
     public Page<StudentResource> getAllStudentsByTeamId(@PathVariable(name = "teamId") Long teamId, Pageable pageable){
         Page<Student> studentPage = studentService.getAllStudentsByTeamId(teamId,pageable);
@@ -60,27 +56,28 @@ public class StudentController {
 
         return new PageImpl<>(resources,pageable, resources.size());
     }
+
+    @Operation(summary = "Get Students by Dni", description = "Get Students by Dni", tags = {"students"})
     @GetMapping("/students/{studentDni}")
     public StudentResource getStudentByDni(@PathVariable String studentDni){
         return convertToResource(studentService.getStudentByDni(studentDni));
     }
 
->>>>>>> MeetYourRoommate/RenatoArredondo
+    @Operation(summary = "Register a Student", description = "Register a new Student", tags = {"students"})
     @PostMapping("/students")
     public StudentResource createStudent(@Valid @RequestBody SaveStudentResource resource){
         Student student = convertToEntity(resource);
         return convertToResource(studentService.createStudent(student));
     }
 
-<<<<<<< HEAD
-=======
+    @Operation(summary = "Join a Team ", description = "Make a Student join a Team", tags = {"students"})
     @PostMapping("/teams/{studentId}")
     public StudentResource joinTeam(@Valid @RequestBody SaveTeamResource resource, @PathVariable Long studentId, Pageable pageable) {
         Team team = mapper.map(resource,Team.class);
         return convertToResource(studentService.joinTeam(team,studentId,pageable));
     }
 
->>>>>>> MeetYourRoommate/RenatoArredondo
+    @Operation(summary = "Update a Student", description = "Update a Student", tags = {"students"})
     @PutMapping("/students/{studentId}")
     public StudentResource updateStudent(
             @PathVariable Long studentId,
@@ -89,25 +86,19 @@ public class StudentController {
         return convertToResource(studentService.updateStudent(student,studentId));
     }
 
-<<<<<<< HEAD
-=======
+    @Operation(summary = "Leave a Team", description = "Make a Student leave the team", tags = {"students"})
     @PutMapping("/teams/students/{studentId}")
     public ResponseEntity<?> leaveTeam(@PathVariable(name = "studentId") Long studentId,
                                       Pageable pageable) {
         return studentService.leaveTeam(studentId,pageable);
     }
 
->>>>>>> MeetYourRoommate/RenatoArredondo
+    @Operation(summary = "Delete a Student", description = "Delete a Student", tags = {"students"})
     @DeleteMapping("/students/{studentId}")
     public ResponseEntity<?> deleteStudent(@PathVariable Long studentId){
         return studentService.deleteStudent(studentId);
     }
 
-<<<<<<< HEAD
-=======
-
-
->>>>>>> MeetYourRoommate/RenatoArredondo
     private  Student convertToEntity(SaveStudentResource resource){return mapper.map(resource,Student.class);}
     private  StudentResource convertToResource(Student entity){return mapper.map(entity,StudentResource.class);}
 }
