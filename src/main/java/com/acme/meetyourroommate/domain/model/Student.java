@@ -1,7 +1,10 @@
 package com.acme.meetyourroommate.domain.model;
 
-import javax.persistence.Entity;
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
+import javax.persistence.*;
 import javax.validation.constraints.NotNull;
+import java.util.List;
 
 @Entity
 public class Student extends Person{
@@ -14,6 +17,11 @@ public class Student extends Person{
 
     @NotNull
     private Boolean bSmoker;
+
+    @ManyToOne(fetch = FetchType.LAZY ,optional = false)
+    @JoinColumn(name = "team_id" ,nullable = false)
+    @JsonIgnore
+    private Team team;
 
     public String getDescription() {
         return description;
@@ -38,4 +46,5 @@ public class Student extends Person{
     public void setbSmoker(Boolean bSmoker) {
         this.bSmoker = bSmoker;
     }
+
 }
