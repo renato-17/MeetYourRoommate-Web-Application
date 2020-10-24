@@ -4,6 +4,8 @@ import com.acme.meetyourroommate.domain.model.Lessor;
 import com.acme.meetyourroommate.domain.service.LessorService;
 import com.acme.meetyourroommate.resource.LessorResource;
 import com.acme.meetyourroommate.resource.SaveLessorResource;
+import io.swagger.v3.oas.annotations.Operation;
+import io.swagger.v3.oas.annotations.tags.Tag;
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
@@ -16,6 +18,7 @@ import javax.validation.Valid;
 import java.util.List;
 import java.util.stream.Collectors;
 
+@Tag(name = "lessors",description = "Lessors API")
 @RestController
 @RequestMapping("/api")
 public class LessorController {
@@ -26,6 +29,7 @@ public class LessorController {
     @Autowired
     private LessorService lessorService;
 
+    @Operation(summary = "Get Lessors", description = "Get all lessors", tags = {"lessors"})
     @GetMapping("/lessors")
     public Page<LessorResource> getAllLessors(Pageable pageable){
         Page<Lessor> lessorPage = lessorService.getAllLessor(pageable);
@@ -38,12 +42,14 @@ public class LessorController {
         return new PageImpl<>(resources,pageable, resources.size());
     }
 
+    @Operation(summary = "Create Lessor", description = "Create a new lessor", tags = {"lessors"})
     @PostMapping("/lessors")
     public LessorResource createLessor(@Valid @RequestBody SaveLessorResource resource){
         Lessor lessor = convertToEntity(resource);
         return convertToResource(lessorService.createLessor(lessor));
     }
 
+    @Operation(summary = "Update Lessor", description = "Update an existing lessor", tags = {"lessors"})
     @PutMapping("/lessors/{lessorId}")
     public LessorResource updateLessor(
             @PathVariable Long lessorId,
@@ -52,6 +58,7 @@ public class LessorController {
         return convertToResource(lessorService.updateLessor(lessor,lessorId));
     }
 
+    @Operation(summary = "Delete Lessor", description = "Delete an existing lessor", tags = {"lessors"})
     @DeleteMapping("/lessors/{lessorId}")
     public ResponseEntity<?> deleteLessor(@PathVariable Long lessorId){
         return lessorService.deleteLessor(lessorId);

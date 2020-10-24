@@ -1,13 +1,9 @@
 package com.acme.meetyourroommate.service;
 
 import com.acme.meetyourroommate.domain.model.Student;
-<<<<<<< HEAD
 import com.acme.meetyourroommate.domain.repository.StudentRepository;
-=======
 import com.acme.meetyourroommate.domain.model.Team;
-import com.acme.meetyourroommate.domain.repository.StudentRepository;
 import com.acme.meetyourroommate.domain.repository.TeamRepository;
->>>>>>> MeetYourRoommate/RenatoArredondo
 import com.acme.meetyourroommate.domain.service.StudentService;
 import com.acme.meetyourroommate.exception.ResourceNotFoundException;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -15,27 +11,17 @@ import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
-
-<<<<<<< HEAD
-=======
-import java.util.ArrayList;
 import java.util.List;
-import java.util.stream.Collector;
-import java.util.stream.Collectors;
 
->>>>>>> MeetYourRoommate/RenatoArredondo
 @Service
 public class StudentServiceImpl implements StudentService {
 
     @Autowired
     private StudentRepository studentRepository;
 
-<<<<<<< HEAD
-=======
     @Autowired
     private TeamRepository teamRepository;
 
->>>>>>> MeetYourRoommate/RenatoArredondo
     @Override
     public Page<Student> getAllStudents(Pageable pageable) {
         return studentRepository.findAll(pageable);
@@ -82,8 +68,6 @@ public class StudentServiceImpl implements StudentService {
         return ResponseEntity.ok().build();
     }
 
-<<<<<<< HEAD
-=======
     @Override
     public Page<Student> getAllStudentsByTeamId(Long teamId, Pageable pageable) {
         return studentRepository.findByTeamId(teamId,pageable);
@@ -119,5 +103,4 @@ public class StudentServiceImpl implements StudentService {
         return ResponseEntity.ok().build();
     }
 
->>>>>>> MeetYourRoommate/RenatoArredondo
 }
