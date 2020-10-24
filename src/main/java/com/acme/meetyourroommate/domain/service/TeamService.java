@@ -12,4 +12,5 @@ public interface TeamService {
     Team createTeam(Team team);
     Team updateTeam(Team teamRequest, Long teamId);
     ResponseEntity<?> deleteTeam(Long teamId);
+    Team getTeamByStudentId(Long studentId);
 }

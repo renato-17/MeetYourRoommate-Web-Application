@@ -1,6 +1,8 @@
 package com.acme.meetyourroommate.service;
 
+import com.acme.meetyourroommate.domain.model.Student;
 import com.acme.meetyourroommate.domain.model.Team;
+import com.acme.meetyourroommate.domain.repository.StudentRepository;
 import com.acme.meetyourroommate.domain.repository.TeamRepository;
 import com.acme.meetyourroommate.domain.service.TeamService;
 import com.acme.meetyourroommate.exception.ResourceNotFoundException;
@@ -15,6 +17,9 @@ public class TeamServiceImpl implements TeamService {
 
     @Autowired
     private TeamRepository teamRepository;
+
+    @Autowired
+    private StudentRepository studentRepository;
 
     @Override
     public Page<Team> getAllTeams(Pageable pageable) {
@@ -53,5 +58,16 @@ public class TeamServiceImpl implements TeamService {
                 .orElseThrow(()->new ResourceNotFoundException("Team","teamId",teamId));
         teamRepository.delete(team);
         return ResponseEntity.ok().build();
+    }
+
+    @Override
+    public Team getTeamByStudentId(Long studentId) {
+        Student student = studentRepository.findById(studentId)
+                .orElseThrow(()-> new ResourceNotFoundException("Student","Id",studentId));
+
+        if(student.getTeam() == null)
+            throw  new ResourceNotFoundException("There is not any Team linked with this Student");
+
+        return student.getTeam();
     }
 }

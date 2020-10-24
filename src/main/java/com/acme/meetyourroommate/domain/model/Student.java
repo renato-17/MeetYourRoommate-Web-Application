@@ -18,8 +18,8 @@ public class Student extends Person{
     @NotNull
     private Boolean bSmoker;
 
-    @ManyToOne(fetch = FetchType.LAZY ,optional = false)
-    @JoinColumn(name = "team_id" ,nullable = false)
+    @ManyToOne(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
+    @JoinColumn(name = "team_id")
     @JsonIgnore
     private Team team;
 
@@ -47,4 +47,11 @@ public class Student extends Person{
         this.bSmoker = bSmoker;
     }
 
+    public Team getTeam() {
+        return team;
+    }
+
+    public void setTeam(Team team) {
+        this.team = team;
+    }
 }
