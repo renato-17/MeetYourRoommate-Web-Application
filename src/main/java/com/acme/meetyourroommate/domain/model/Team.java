@@ -11,7 +11,11 @@ public class Team {
     private Long id;
 
     @NotNull
+<<<<<<< HEAD
     private Long name;
+=======
+    private String name;
+>>>>>>> MeetYourRoommate/RenatoArredondo
 
     public Long getId() {
         return id;
@@ -21,11 +25,19 @@ public class Team {
         this.id = id;
     }
 
+<<<<<<< HEAD
     public Long getName() {
         return name;
     }
 
     public void setName(Long name) {
+=======
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+>>>>>>> MeetYourRoommate/RenatoArredondo
         this.name = name;
     }
 }
