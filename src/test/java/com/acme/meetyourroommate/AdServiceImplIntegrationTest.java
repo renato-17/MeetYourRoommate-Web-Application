@@ -32,6 +32,7 @@ public class AdServiceImplIntegrationTest {
 
     @Autowired
     private AdService adService;
+
     @TestConfiguration
     static class AdServiceImplTestConfiguration {
         @Bean
