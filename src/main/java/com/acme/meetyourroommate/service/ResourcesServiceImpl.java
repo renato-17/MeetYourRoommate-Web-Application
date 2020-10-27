@@ -1,6 +1,8 @@
 package com.acme.meetyourroommate.service;
 
+import com.acme.meetyourroommate.domain.model.Details;
 import com.acme.meetyourroommate.domain.model.Resources;
+import com.acme.meetyourroommate.domain.repository.DetailsRepository;
 import com.acme.meetyourroommate.domain.repository.ResourcesRepository;
 import com.acme.meetyourroommate.domain.service.ResourcesService;
 import com.acme.meetyourroommate.exception.ResourceNotFoundException;
@@ -16,6 +18,9 @@ public class ResourcesServiceImpl implements ResourcesService {
     @Autowired
     private ResourcesRepository resourcesRepository;
 
+    @Autowired
+    private DetailsRepository detailsRepository;
+
     @Override
     public Page<Resources> getAllResources(Pageable pageable){
         return resourcesRepository.findAll(pageable);
@@ -26,6 +31,8 @@ public class ResourcesServiceImpl implements ResourcesService {
         return resourcesRepository.findById(resourceId)
                 .orElseThrow(()-> new ResourceNotFoundException("Resource","Id",resourceId));
     }
+
+
 
     @Override
     public Resources createResource(Resources resource){

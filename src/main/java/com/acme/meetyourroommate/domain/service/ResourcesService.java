@@ -7,9 +7,7 @@ import org.springframework.http.ResponseEntity;
 
 public interface ResourcesService {
     Page<Resources> getAllResources(Pageable pageable);
-    Page<Resources> getResourcesByDetailsId(Long detailId,Pageable pageable);
     Resources getResourceById(Long resourceId);
-    Resources getResourceByIdAndDetailsId(Long id, Long detailId);
     Resources createResource(Resources resource);
     Resources updateResources(Long resourceId, Resources resourceRequest);
     ResponseEntity<?> deleteResource(Long resourceId);

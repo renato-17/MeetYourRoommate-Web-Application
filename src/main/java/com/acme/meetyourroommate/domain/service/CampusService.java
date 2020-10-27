@@ -7,7 +7,6 @@ import org.springframework.http.ResponseEntity;
 
 public interface CampusService {
     Page<Campus> getAllCampuses(Pageable pageable);
-    Page<Campus> getCampusesByStudyCenterId(Long studyCenterId,Pageable pageable);
     Campus getCampusesById(Long campusId);
     Campus createCampuses(Campus campus);
     Campus updateCampuses(Long campusId, Campus campusRequest);

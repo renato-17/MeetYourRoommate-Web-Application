@@ -1,7 +1,9 @@
 package com.acme.meetyourroommate.service;
 
 import com.acme.meetyourroommate.domain.model.Details;
+import com.acme.meetyourroommate.domain.model.Property;
 import com.acme.meetyourroommate.domain.repository.DetailsRepository;
+import com.acme.meetyourroommate.domain.repository.PropertyRepository;
 import com.acme.meetyourroommate.domain.service.DetailsService;
 import com.acme.meetyourroommate.exception.ResourceNotFoundException;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -15,6 +17,9 @@ public class DetailsServiceImpl implements DetailsService {
 
     @Autowired
     private DetailsRepository detailsRepository;
+
+    @Autowired
+    private PropertyRepository propertyRepository;
 
     @Override
     public Page<Details> getAllDetails(Pageable pageable){
