@@ -8,6 +8,7 @@ import org.springframework.http.ResponseEntity;
 public interface DetailsService {
     Page<Details> getAllDetails(Pageable pageable);
     Details getDetailsById(Long detailsId);
+    Details getDetailsByPropertyId(Long propertyId);
     Details createDetails(Details details);
     Details updateDetails(Long detailsId, Details detailsRequest);
     ResponseEntity<?> deleteDetails(Long detailsId);

@@ -11,7 +11,7 @@ public class Resources extends AuditModel{
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long idPropertyResource;
+    private Long id;
 
     @NotNull
     @Size(max = 50)
@@ -25,12 +25,12 @@ public class Resources extends AuditModel{
     @JoinColumn(name = "details_id",nullable = false)
     private Details details;
 
-    public Long getIdPropertyResource() {
-        return idPropertyResource;
+    public Long getId() {
+        return id;
     }
 
-    public void setIdPropertyResource(Long idPropertyResource) {
-        this.idPropertyResource = idPropertyResource;
+    public void setId(Long idPropertyResource) {
+        this.id = idPropertyResource;
     }
 
     public String getType() {

@@ -9,6 +9,5 @@ import org.springframework.stereotype.Repository;
 import java.util.Optional;
 
 public interface DetailsRepository extends JpaRepository<Details, Long> {
-    Page<Details> findByPropertyId(Long propertyId, Pageable pageable);
-    Optional<Details> findByIdAndPropertyId(Long id, Long propertyId);
+    Details findByPropertyId(Long propertyId, Pageable pageable);
 }

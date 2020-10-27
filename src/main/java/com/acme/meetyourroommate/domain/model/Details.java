@@ -1,5 +1,8 @@
 package com.acme.meetyourroommate.domain.model;
 
+import org.hibernate.annotations.OnDelete;
+import org.hibernate.annotations.OnDeleteAction;
+
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
 
@@ -10,7 +13,7 @@ public class Details extends AuditModel{
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id")
-    private Long idPropertyDetails;
+    private Long id;
 
     @NotNull
     private int rooms;
@@ -30,15 +33,17 @@ public class Details extends AuditModel{
     @NotNull
     private float price;
 
-    @OneToOne
+    @OneToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "property_id", referencedColumnName = "id")
+    @OnDelete(action = OnDeleteAction.CASCADE)
     private Property property;
 
-    public Long getIdPropertyDetails() {
-        return idPropertyDetails;
+    public Long getId() {
+        return id;
     }
 
-    public void setIdPropertyDetails(Long idPropertyDetails) {
-        this.idPropertyDetails = idPropertyDetails;
+    public void setId(Long idPropertyDetails) {
+        this.id = idPropertyDetails;
     }
 
     public int getRooms() {
@@ -87,5 +92,13 @@ public class Details extends AuditModel{
 
     public void setPrice(float price) {
         this.price = price;
+    }
+
+    public Property getProperty() {
+        return property;
+    }
+
+    public void setProperty(Property property) {
+        this.property = property;
     }
 }
