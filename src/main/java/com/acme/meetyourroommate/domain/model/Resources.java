@@ -1,4 +1,4 @@
-package com.meetyourroomate.domain.model;
+package com.acme.meetyourroommate.domain.model;
 
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;

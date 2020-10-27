@@ -1,8 +1,7 @@
-package com.meetyourroomate.resources;
+package com.acme.meetyourroommate.resource;
 
-import com.meetyourroomate.domain.model.AuditModel;
 
-public class DetailsResource extends AuditModel {
+public class DetailsResource{
     private Long id;
     private int rooms;
     private int bathrooms;

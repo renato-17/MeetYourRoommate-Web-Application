@@ -1,7 +1,6 @@
-package com.meetyourroomate.domain.service;
+package com.acme.meetyourroommate.domain.service;
 
-import com.meetyourroomate.domain.model.Resources;
-import com.meetyourroomate.domain.model.StudyCenter;
+import com.acme.meetyourroommate.domain.model.Resources;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.http.ResponseEntity;

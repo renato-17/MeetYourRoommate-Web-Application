@@ -1,4 +1,4 @@
-package com.meetyourroomate.domain.model;
+package com.acme.meetyourroommate.domain.model;
 
 import javax.persistence.*;
 import javax.validation.constraints.NotBlank;
@@ -16,6 +16,7 @@ public class StudyCenter extends AuditModel{
     @NotNull
     @Size(max = 40)
     private String name;
+
 
     public Long getId() {
         return id;

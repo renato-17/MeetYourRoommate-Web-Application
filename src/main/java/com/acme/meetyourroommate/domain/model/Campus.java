@@ -1,4 +1,4 @@
-package com.meetyourroomate.domain.model;
+package com.acme.meetyourroommate.domain.model;
 
 
 import javax.persistence.*;
@@ -18,10 +18,10 @@ public class Campus extends AuditModel {
 
     @NotNull
     @Size(max = 100)
-    private String adresss;
+    private String address;
 
     @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "center_id",nullable = false)
+    @JoinColumn(name = "studyCenter_id",nullable = false)
     private StudyCenter studyCenter;
 
     public Long getId() {
@@ -40,12 +40,12 @@ public class Campus extends AuditModel {
         this.name = name;
     }
 
-    public String getAdresss() {
-        return adresss;
+    public String getAddress() {
+        return address;
     }
 
-    public void setAdresss(String adresss) {
-        this.adresss = adresss;
+    public void setAddress(String address) {
+        this.address = address;
     }
 
     public StudyCenter getStudyCenter() {

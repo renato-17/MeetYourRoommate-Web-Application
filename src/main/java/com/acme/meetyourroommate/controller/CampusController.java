@@ -1,10 +1,9 @@
-package com.meetyourroomate.controller;
-
-import com.meetyourroomate.domain.model.Campus;
-import com.meetyourroomate.domain.repository.CampusRepository;
-import com.meetyourroomate.domain.service.CampusService;
-import com.meetyourroomate.resources.CampusResource;
-import com.meetyourroomate.resources.SaveCampusResource;
+package com.acme.meetyourroommate.controller;
+import com.acme.meetyourroommate.domain.model.Campus;
+import com.acme.meetyourroommate.domain.repository.CampusRepository;
+import com.acme.meetyourroommate.domain.service.CampusService;
+import com.acme.meetyourroommate.resource.CampusResource;
+import com.acme.meetyourroommate.resource.SaveCampusResource;
 import io.swagger.v3.oas.annotations.tags.Tag;
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;

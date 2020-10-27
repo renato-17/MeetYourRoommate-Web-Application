@@ -1,4 +1,4 @@
-package com.meetyourroomate.resources;
+package com.acme.meetyourroommate.resource;
 
 import java.util.Date;
 

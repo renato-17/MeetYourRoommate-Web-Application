@@ -1,4 +1,4 @@
-package com.meetyourroomate.resources;
+package com.acme.meetyourroommate.resource;
 
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotNull;

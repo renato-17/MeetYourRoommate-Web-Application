@@ -1,11 +1,11 @@
-package com.meetyourroomate.controller;
+package com.acme.meetyourroommate.controller;
 
 
-import com.meetyourroomate.domain.model.StudyCenter;
-import com.meetyourroomate.domain.repository.StudyCenterRepository;
-import com.meetyourroomate.domain.service.StudyCenterService;
-import com.meetyourroomate.resources.SaveStudyCenterResource;
-import com.meetyourroomate.resources.StudyCenterResource;
+import com.acme.meetyourroommate.domain.model.StudyCenter;
+import com.acme.meetyourroommate.domain.repository.StudyCenterRepository;
+import com.acme.meetyourroommate.domain.service.StudyCenterService;
+import com.acme.meetyourroommate.resource.SaveStudyCenterResource;
+import com.acme.meetyourroommate.resource.StudyCenterResource;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.tags.Tag;
 import org.modelmapper.ModelMapper;

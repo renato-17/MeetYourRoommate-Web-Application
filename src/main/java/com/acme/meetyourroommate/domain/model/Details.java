@@ -1,4 +1,4 @@
-package com.meetyourroomate.domain.model;
+package com.acme.meetyourroommate.domain.model;
 
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
@@ -29,6 +29,9 @@ public class Details extends AuditModel{
 
     @NotNull
     private float price;
+
+    @OneToOne
+    private Property property;
 
     public Long getIdPropertyDetails() {
         return idPropertyDetails;
