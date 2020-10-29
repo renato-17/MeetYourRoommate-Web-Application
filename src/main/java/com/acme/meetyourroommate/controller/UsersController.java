@@ -4,6 +4,7 @@ import com.acme.meetyourroommate.domain.model.User;
 import com.acme.meetyourroommate.domain.service.UserService;
 import com.acme.meetyourroommate.resource.UserResource;
 import com.acme.meetyourroommate.resource.SaveUserResource;
+import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.tags.Tag;
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -17,7 +18,7 @@ import javax.validation.Valid;
 import java.util.List;
 import java.util.stream.Collectors;
 
-@Tag(name="users", description="Users API")
+@Tag(name = "user_types")
 @RestController
 @RequestMapping("/api")
 public class UsersController {
@@ -27,6 +28,9 @@ public class UsersController {
     @Autowired
     private UserService userService;
 
+    @Operation(
+            summary = "Get Users By UserType",
+            description = "Get Users associated to given UserType")
     @GetMapping("user_types/{userTypeId}/users")
     public Page<UserResource> getAllUsersByUserTypeId (
             @PathVariable Long userTypeId, Pageable pageable) {
