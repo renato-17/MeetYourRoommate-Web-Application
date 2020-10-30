@@ -72,9 +72,9 @@ public class StudentController {
 
     @Operation(summary = "Join a Team ", description = "Make a Student join a Team", tags = {"students"})
     @PostMapping("/teams/{studentId}")
-    public StudentResource joinTeam(@Valid @RequestBody SaveTeamResource resource, @PathVariable Long studentId, Pageable pageable) {
+    public StudentResource joinTeam(@Valid @RequestBody SaveTeamResource resource, @PathVariable Long studentId) {
         Team team = mapper.map(resource,Team.class);
-        return convertToResource(studentService.joinTeam(team,studentId,pageable));
+        return convertToResource(studentService.joinTeam(team,studentId));
     }
 
     @Operation(summary = "Update a Student", description = "Update a Student", tags = {"students"})
@@ -88,9 +88,9 @@ public class StudentController {
 
     @Operation(summary = "Leave a Team", description = "Make a Student leave the team", tags = {"students"})
     @PutMapping("/teams/students/{studentId}")
-    public ResponseEntity<?> leaveTeam(@PathVariable(name = "studentId") Long studentId,
+    public StudentResource leaveTeam(@PathVariable(name = "studentId") Long studentId,
                                       Pageable pageable) {
-        return studentService.leaveTeam(studentId,pageable);
+        return convertToResource(studentService.leaveTeam(studentId,pageable));
     }
 
     @Operation(summary = "Delete a Student", description = "Delete a Student", tags = {"students"})

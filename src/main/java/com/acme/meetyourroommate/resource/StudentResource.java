@@ -18,7 +18,7 @@ public class StudentResource {
     private String address;
     private String description;
     private String hobbies;
-    private Boolean bSmoker;
+    private Boolean smoker;
 
     public Long getId() {
         return id;
@@ -100,11 +100,11 @@ public class StudentResource {
         this.hobbies = hobbies;
     }
 
-    public Boolean getbSmoker() {
-        return bSmoker;
+    public Boolean getSmoker() {
+        return smoker;
     }
 
-    public void setbSmoker(Boolean bSmoker) {
-        this.bSmoker = bSmoker;
+    public void setSmoker(Boolean smoker) {
+        this.smoker = smoker;
     }
 }

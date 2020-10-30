@@ -50,7 +50,7 @@ public class SaveStudentResource {
     private String hobbies;
 
     @NotNull
-    private Boolean bSmoker;
+    private Boolean smoker;
 
     public String getFirstName() {
         return firstName;
@@ -124,11 +124,11 @@ public class SaveStudentResource {
         this.hobbies = hobbies;
     }
 
-    public Boolean getbSmoker() {
-        return bSmoker;
+    public Boolean getSmoker() {
+        return smoker;
     }
 
-    public void setbSmoker(Boolean bSmoker) {
-        this.bSmoker = bSmoker;
+    public void setSmoker(Boolean bSmoker) {
+        this.smoker = bSmoker;
     }
 }

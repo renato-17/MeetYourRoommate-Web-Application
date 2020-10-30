@@ -15,7 +15,7 @@ public interface StudentService {
     ResponseEntity<?> deleteStudent(Long studentId);
 
     Page<Student> getAllStudentsByTeamId(Long teamId, Pageable pageable);
-    Student joinTeam(Team team, Long studentId, Pageable pageable);
-    ResponseEntity<?> leaveTeam(Long studentId, Pageable pageable);
+    Student joinTeam(Team team, Long studentId);
+    Student leaveTeam(Long studentId, Pageable pageable);
 
 }

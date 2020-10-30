@@ -55,7 +55,7 @@ public class StudentServiceImpl implements StudentService {
         student.setAddress(studentRequest.getAddress());
         student.setDescription(studentRequest.getDescription());
         student.setHobbies(studentRequest.getHobbies());
-        student.setbSmoker(studentRequest.getbSmoker());
+        student.setSmoker(studentRequest.getSmoker());
 
         return studentRepository.save(student);
     }
@@ -74,12 +74,13 @@ public class StudentServiceImpl implements StudentService {
     }
 
     @Override
-    public Student joinTeam(Team team, Long studentId, Pageable pageable) {
+    public Student joinTeam(Team team, Long studentId) {
         Student student = getStudentById(studentId);
         if(student.getTeam() != null)
             return student;
 
         Team existingTeam = teamRepository.findByName(team.getName()).orElse(null);
+
         if(existingTeam==null){
             student.setTeam(team);
             return studentRepository.save(student);
@@ -90,17 +91,20 @@ public class StudentServiceImpl implements StudentService {
 
 
     @Override
-    public ResponseEntity<?> leaveTeam(Long studentId, Pageable pageable) {
+    public Student leaveTeam(Long studentId, Pageable pageable) {
         Student student = getStudentById(studentId);
         Team team = student.getTeam();
         student.setTeam(null);
 
         studentRepository.save(student);
+        if(student.getTeam() == null)
+            return student;
+
         List<Student> students = getAllStudentsByTeamId(team.getId(),pageable).getContent();
         if(students.size() == 0)
             teamRepository.delete(team);
 
-        return ResponseEntity.ok().build();
+        return student;
     }
 
 }

@@ -9,22 +9,17 @@ import com.acme.meetyourroommate.service.StudentServiceImpl;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
-import org.mockito.Mockito;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.TestConfiguration;
 import org.springframework.boot.test.mock.mockito.MockBean;
 import org.springframework.context.annotation.Bean;
 import org.springframework.data.domain.Page;
-import org.springframework.data.domain.PageImpl;
-import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
 import org.springframework.test.context.junit.jupiter.SpringExtension;
-
-import java.util.ArrayList;
-import java.util.List;
 import java.util.Optional;
 
 import static org.assertj.core.api.Assertions.assertThat;
+import static org.mockito.ArgumentMatchers.*;
 import static org.mockito.Mockito.when;
 
 @ExtendWith(SpringExtension.class)
@@ -57,6 +52,7 @@ public class StudentServiceImplIntegrationTest {
 
         when(studentRepository.findByDni(dni))
                 .thenReturn(Optional.of(student));
+
         //Act
         Student foundStudent = studentService.getStudentByDni(dni);
 
@@ -64,4 +60,60 @@ public class StudentServiceImplIntegrationTest {
         assertThat(foundStudent.getDni()).isEqualTo(dni);
     }
 
+    @Test
+    @DisplayName("When JoinATeam With Valid Team Then Returns Student With New Team ")
+    public void whenJoinATeamWithTeamExistReturnsStudentWithNewTeamId(){
+        //Arrange
+        String teamName = "UPC";
+        Team team = new Team();
+        team.setName(teamName);
+
+        Long id = 1L;
+        Student student = new Student();
+        student.setId(1L);
+
+        when(studentRepository.findById(id))
+                .thenReturn(Optional.of(student));
+
+        student.setTeam(team);
+        when(studentRepository.save(student))
+                .thenReturn(student);
+
+        when(teamRepository.findByName(teamName))
+                .thenReturn(null);
+
+        //Act
+        Student foundStudent = studentService.joinTeam(team,student.getId());
+        //Assert
+        assertThat(foundStudent.getTeam()).isEqualTo(team);
+    }
+
+    @Test
+    @DisplayName("When LeaveATeam With Valid Team Then Returns Student Without Team ")
+    public void whenLeaveATeamWithTeamExistReturnsStudentWithNewTeamId(){
+        //Arrange
+        String teamName = "UPC";
+        Team team = new Team();
+        team.setName(teamName);
+
+        Long id = 1L;
+        Student student = new Student();
+        student.setId(1L);
+        student.setTeam(team);
+
+        when(studentRepository.findById(id))
+                .thenReturn(Optional.of(student));
+
+        when(studentRepository.findByTeamId(team.getId(),Pageable.unpaged()))
+                .thenReturn(null);
+
+        student.setTeam(null);
+        when(studentRepository.save(student))
+                .thenReturn(student);
+
+        //Act
+        Student foundStudent = studentService.leaveTeam(student.getId(),Pageable.unpaged());
+        //Assert
+        assertThat(foundStudent.getTeam()).isEqualTo(null);
+    }
 }
