@@ -3,8 +3,7 @@ package com.acme.meetyourroommate.resource;
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotNull;
 
-public class SaveDetailsResource {
-
+public class SavePropertyDetailResource {
     @NotBlank
     @NotNull
     private int rooms;
@@ -33,47 +32,53 @@ public class SaveDetailsResource {
         return rooms;
     }
 
-    public void setRooms(int rooms) {
+    public SavePropertyDetailResource setRooms(int rooms) {
         this.rooms = rooms;
+        return this;
     }
 
     public int getBathrooms() {
         return bathrooms;
     }
 
-    public void setBathrooms(int bathrooms) {
+    public SavePropertyDetailResource setBathrooms(int bathrooms) {
         this.bathrooms = bathrooms;
+        return this;
     }
 
     public int getSquareMeters() {
         return squareMeters;
     }
 
-    public void setSquareMeters(int squareMeters) {
+    public SavePropertyDetailResource setSquareMeters(int squareMeters) {
         this.squareMeters = squareMeters;
+        return this;
     }
 
     public int getKitchens() {
         return kitchens;
     }
 
-    public void setKitchens(int kitchens) {
+    public SavePropertyDetailResource setKitchens(int kitchens) {
         this.kitchens = kitchens;
+        return this;
     }
 
     public int getLivingrooms() {
         return livingrooms;
     }
 
-    public void setLivingrooms(int livingrooms) {
+    public SavePropertyDetailResource setLivingrooms(int livingrooms) {
         this.livingrooms = livingrooms;
+        return this;
     }
 
     public float getPrice() {
         return price;
     }
 
-    public void setPrice(float price) {
+    public SavePropertyDetailResource setPrice(float price) {
         this.price = price;
+        return this;
     }
 }

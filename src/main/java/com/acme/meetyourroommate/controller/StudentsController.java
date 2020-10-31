@@ -1,13 +1,12 @@
 package com.acme.meetyourroommate.controller;
 
 import com.acme.meetyourroommate.domain.model.Student;
+import com.acme.meetyourroommate.domain.model.Team;
 import com.acme.meetyourroommate.domain.service.StudentService;
 import com.acme.meetyourroommate.resource.SaveStudentResource;
-import com.acme.meetyourroommate.resource.StudentResource;
-import com.acme.meetyourroommate.domain.model.Team;
 import com.acme.meetyourroommate.resource.SaveTeamResource;
+import com.acme.meetyourroommate.resource.StudentResource;
 import io.swagger.v3.oas.annotations.Operation;
-import io.swagger.v3.oas.annotations.tags.Tag;
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
@@ -20,10 +19,9 @@ import javax.validation.Valid;
 import java.util.List;
 import java.util.stream.Collectors;
 
-@Tag(name = "students",description = "Students API")
 @RestController
 @RequestMapping("/api")
-public class StudentController {
+public class StudentsController {
 
     @Autowired
     private ModelMapper mapper;
@@ -31,7 +29,7 @@ public class StudentController {
     @Autowired
     private StudentService studentService;
 
-    @Operation(summary = "Get Students", description = "Get All Students", tags = {"students"})
+    @Operation(summary = "Get Student", description = "Get Student", tags = {"students"})
     @GetMapping("/students")
     public Page<StudentResource> getAllStudents(Pageable pageable){
         Page<Student> studentPage = studentService.getAllStudents(pageable);
@@ -89,7 +87,7 @@ public class StudentController {
     @Operation(summary = "Leave a Team", description = "Make a Student leave the team", tags = {"students"})
     @PutMapping("/teams/students/{studentId}")
     public ResponseEntity<?> leaveTeam(@PathVariable(name = "studentId") Long studentId,
-                                      Pageable pageable) {
+                                       Pageable pageable) {
         return studentService.leaveTeam(studentId,pageable);
     }
 
@@ -102,3 +100,4 @@ public class StudentController {
     private  Student convertToEntity(SaveStudentResource resource){return mapper.map(resource,Student.class);}
     private  StudentResource convertToResource(Student entity){return mapper.map(entity,StudentResource.class);}
 }
+

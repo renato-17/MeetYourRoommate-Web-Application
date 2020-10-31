@@ -5,8 +5,7 @@ import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 import java.util.Date;
 
-public class SaveResourcesResource {
-
+public class SavePropertyResourceResource {
     @NotNull
     @NotBlank
     @Size(max = 50)
@@ -19,15 +18,17 @@ public class SaveResourcesResource {
         return type;
     }
 
-    public void setType(String type) {
+    public SavePropertyResourceResource setType(String type) {
         this.type = type;
+        return this;
     }
 
     public Date getDate() {
         return date;
     }
 
-    public void setDate(Date date) {
+    public SavePropertyResourceResource setDate(Date date) {
         this.date = date;
+        return this;
     }
 }

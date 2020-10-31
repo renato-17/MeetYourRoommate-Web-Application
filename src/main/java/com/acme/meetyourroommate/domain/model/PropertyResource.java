@@ -7,7 +7,7 @@ import java.util.Date;
 
 @Entity
 @Table(name= "property_resources")
-public class Resources extends AuditModel{
+public class PropertyResource extends AuditModel{
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -23,7 +23,7 @@ public class Resources extends AuditModel{
 
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "details_id",nullable = false)
-    private Details details;
+    private PropertyDetail details;
 
     public Long getId() {
         return id;
@@ -49,11 +49,11 @@ public class Resources extends AuditModel{
         this.date = date;
     }
 
-    public Details getDetails() {
+    public PropertyDetail getDetails() {
         return details;
     }
 
-    public void setDetails(Details details) {
+    public void setDetails(PropertyDetail details) {
         this.details = details;
     }
 }

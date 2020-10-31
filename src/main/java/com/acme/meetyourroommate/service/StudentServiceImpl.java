@@ -1,8 +1,8 @@
 package com.acme.meetyourroommate.service;
 
 import com.acme.meetyourroommate.domain.model.Student;
-import com.acme.meetyourroommate.domain.repository.StudentRepository;
 import com.acme.meetyourroommate.domain.model.Team;
+import com.acme.meetyourroommate.domain.repository.StudentRepository;
 import com.acme.meetyourroommate.domain.repository.TeamRepository;
 import com.acme.meetyourroommate.domain.service.StudentService;
 import com.acme.meetyourroommate.exception.ResourceNotFoundException;
@@ -11,6 +11,7 @@ import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
+
 import java.util.List;
 
 @Service

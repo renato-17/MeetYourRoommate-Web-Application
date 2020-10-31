@@ -17,71 +17,87 @@ public class LessorResource {
         return id;
     }
 
-    public void setId(Long id) {
+    public LessorResource setId(Long id) {
         this.id = id;
+        return this;
+
     }
 
     public String getFirstName() {
         return firstName;
     }
 
-    public void setFirstName(String firstName) {
+    public LessorResource setFirstName(String firstName) {
         this.firstName = firstName;
+        return this;
+
     }
 
     public String getLastName() {
         return lastName;
     }
 
-    public void setLastName(String lastName) {
+    public LessorResource setLastName(String lastName) {
         this.lastName = lastName;
+        return this;
     }
 
     public String getDni() {
         return dni;
     }
 
-    public void setDni(String dni) {
+    public LessorResource setDni(String dni) {
         this.dni = dni;
+        return this;
+
     }
 
     public String getPhoneNumber() {
         return phoneNumber;
     }
 
-    public void setPhoneNumber(String phoneNumber) {
+    public LessorResource setPhoneNumber(String phoneNumber) {
         this.phoneNumber = phoneNumber;
+        return this;
+
     }
 
     public String getGender() {
         return gender;
     }
 
-    public void setGender(String gender) {
+    public LessorResource setGender(String gender) {
         this.gender = gender;
+        return this;
+
     }
 
     public Date getBirthdate() {
         return birthdate;
     }
 
-    public void setBirthdate(Date birthdate) {
+    public LessorResource setBirthdate(Date birthdate) {
         this.birthdate = birthdate;
+        return this;
     }
 
     public String getAddress() {
         return address;
     }
 
-    public void setAddress(String address) {
+    public LessorResource setAddress(String address) {
         this.address = address;
+        return this;
+
     }
 
     public Boolean getbPremium() {
         return bPremium;
     }
 
-    public void setbPremium(Boolean bPremium) {
+    public LessorResource setbPremium(Boolean bPremium) {
         this.bPremium = bPremium;
+        return this;
+
     }
 }

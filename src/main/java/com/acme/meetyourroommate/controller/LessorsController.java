@@ -5,7 +5,6 @@ import com.acme.meetyourroommate.domain.service.LessorService;
 import com.acme.meetyourroommate.resource.LessorResource;
 import com.acme.meetyourroommate.resource.SaveLessorResource;
 import io.swagger.v3.oas.annotations.Operation;
-import io.swagger.v3.oas.annotations.tags.Tag;
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
@@ -18,10 +17,9 @@ import javax.validation.Valid;
 import java.util.List;
 import java.util.stream.Collectors;
 
-@Tag(name = "lessors",description = "Lessors API")
 @RestController
 @RequestMapping("/api")
-public class LessorController {
+public class LessorsController {
 
     @Autowired
     private ModelMapper mapper;

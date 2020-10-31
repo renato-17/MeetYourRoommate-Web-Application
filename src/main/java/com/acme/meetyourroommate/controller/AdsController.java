@@ -5,7 +5,6 @@ import com.acme.meetyourroommate.domain.service.AdService;
 import com.acme.meetyourroommate.resource.AdResource;
 import com.acme.meetyourroommate.resource.SaveAdResource;
 import io.swagger.v3.oas.annotations.Operation;
-import io.swagger.v3.oas.annotations.tags.Tag;
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
@@ -18,7 +17,7 @@ import javax.validation.Valid;
 import java.util.List;
 import java.util.stream.Collectors;
 
-@Tag(name = "ads",description = "Ads API")
+
 @RestController
 @RequestMapping("/api")
 public class AdsController {
@@ -28,9 +27,9 @@ public class AdsController {
     @Autowired
     private AdService adService;
 
-    @Operation(summary = "Get all Ads", description = "Get all Ads by Property Id", tags = {"ads"})
+    @Operation(summary = "Get Ads By Property", description = "Get Ads associated to given Property", tags = {"properties"})
     @GetMapping("properties/{propertyId}/ads")
-    public Page<AdResource> getAllAdsByPropertyId (
+    public Page<AdResource> getAllAdsByPropertyId(
             @PathVariable Long propertyId, Pageable pageable) {
         Page<Ad> adPage = adService.getAllAdsByPropertyId(propertyId, pageable);
         List<AdResource> resources = adPage.getContent().stream().map(
@@ -38,27 +37,28 @@ public class AdsController {
         return new PageImpl<>(resources, pageable, resources.size());
     }
 
-    @Operation(summary = "Create an Ad", description = "Create a new Ad", tags = {"ads"})
+    @Operation(summary = "Create Ad", description = "Create a new Ad", tags = {"ads"})
     @PostMapping("properties/{propertyId}/ads")
     public AdResource createAd(
-            @PathVariable Long propertyId, @Valid @RequestBody SaveAdResource resource) {
+            @PathVariable Long propertyId,
+            @Valid @RequestBody SaveAdResource resource) {
         return convertToResource(adService.createAd(propertyId, convertToEntity(resource)));
     }
 
-    @Operation(summary = "Update an Ad", description = "Update an existing Ad", tags = {"ads"})
+    @Operation(summary = "Update Ad", description = "Update Ad with given Id", tags = {"ads"})
     @PutMapping("properties/{propertyId}/ads/{adId}")
-    public AdResource updateAd (
-            @PathVariable(value="propertyId") Long propertyId,
-            @PathVariable(value="adId") Long adId,
+    public AdResource updateAd(
+            @PathVariable(value = "propertyId") Long propertyId,
+            @PathVariable(value = "adId") Long adId,
             @Valid @RequestBody SaveAdResource resource) {
         return convertToResource(adService.updateAd(propertyId, adId, convertToEntity(resource)));
     }
 
-    @Operation(summary = "Delete an Ad", description = "Delete an existing Ad", tags = {"ads"})
+    @Operation(summary = "delete Ad", description = "delete Ad with given Id", tags = {"ads"})
     @DeleteMapping("properties/{propertyId}/ads/{adId}")
     public ResponseEntity<?> deleteAd(
-            @PathVariable(value="propertyId") Long propertyId,
-            @PathVariable (value = "adId") Long adId) {
+            @PathVariable(value = "propertyId") Long propertyId,
+            @PathVariable(value = "adId") Long adId) {
         return adService.deleteAd(propertyId, adId);
     }
 

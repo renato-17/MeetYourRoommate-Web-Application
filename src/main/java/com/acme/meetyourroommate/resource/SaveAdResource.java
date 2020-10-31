@@ -15,4 +15,31 @@ public class SaveAdResource {
 
     @NotNull
     private int likesNumber;
+
+    public String getTitle() {
+        return title;
+    }
+
+    public SaveAdResource setTitle(String title) {
+        this.title = title;
+        return this;
+    }
+
+    public int getViewsNumber() {
+        return viewsNumber;
+    }
+
+    public SaveAdResource setViewsNumber(int viewsNumber) {
+        this.viewsNumber = viewsNumber;
+        return this;
+    }
+
+    public int getLikesNumber() {
+        return likesNumber;
+    }
+
+    public SaveAdResource setLikesNumber(int likesNumber) {
+        this.likesNumber = likesNumber;
+        return this;
+    }
 }

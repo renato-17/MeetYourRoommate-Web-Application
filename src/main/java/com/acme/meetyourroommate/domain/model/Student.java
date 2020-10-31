@@ -1,11 +1,9 @@
 package com.acme.meetyourroommate.domain.model;
-import javax.persistence.Entity;
-import javax.validation.constraints.NotNull;
+
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
-import java.util.List;
 
 @Entity
 public class Student extends Person{
@@ -56,3 +54,4 @@ public class Student extends Person{
         this.team = team;
     }
 }
+

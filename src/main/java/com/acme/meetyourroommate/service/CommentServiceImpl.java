@@ -30,7 +30,7 @@ public class CommentServiceImpl implements CommentService {
     @Override
     public Comment getCommentByIdAndAdId(Long adId, Long commentId) {
         return commentRepository.findByIdAndAdId(commentId, adId)
-                .orElseThrow(()->new ResourceNotFoundException(
+                .orElseThrow(() -> new ResourceNotFoundException(
                         "Comment not found with Id " + commentId +
                                 " and AdId " + adId));
     }
@@ -40,27 +40,27 @@ public class CommentServiceImpl implements CommentService {
         return adRepository.findById(adId).map(ad -> {
             comment.setAd(ad);
             return commentRepository.save(comment);
-        }).orElseThrow(()-> new ResourceNotFoundException(
+        }).orElseThrow(() -> new ResourceNotFoundException(
                 "Ad", "Id", adId));
     }
 
     @Override
     public Comment updateComment(Long adId, Long commentId, Comment commentDetails) {
-        if(!adRepository.existsById(adId))
-        throw new ResourceNotFoundException("Ad", "Id", adId);
+        if (!adRepository.existsById(adId))
+            throw new ResourceNotFoundException("Ad", "Id", adId);
         return commentRepository.findById(commentId).map(comment -> {
             comment.setText(commentDetails.getText());
             return commentRepository.save(comment);
-        }).orElseThrow(()->new ResourceNotFoundException("Comment", "Id", commentId));
+        }).orElseThrow(() -> new ResourceNotFoundException("Comment", "Id", commentId));
     }
 
     @Override
     public ResponseEntity<?> deleteComment(Long adId, Long commentId) {
-        if(!adRepository.existsById(adId))
+        if (!adRepository.existsById(adId))
             throw new ResourceNotFoundException("Ad", "Id", adId);
         return commentRepository.findById(commentId).map(comment -> {
             commentRepository.delete(comment);
             return ResponseEntity.ok().build();
-        }).orElseThrow(()->new ResourceNotFoundException("Comment", "Id", commentId));
+        }).orElseThrow(() -> new ResourceNotFoundException("Comment", "Id", commentId));
     }
 }

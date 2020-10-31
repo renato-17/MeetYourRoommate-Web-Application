@@ -5,7 +5,6 @@ import com.acme.meetyourroommate.domain.service.TeamService;
 import com.acme.meetyourroommate.resource.SaveTeamResource;
 import com.acme.meetyourroommate.resource.TeamResource;
 import io.swagger.v3.oas.annotations.Operation;
-import io.swagger.v3.oas.annotations.tags.Tag;
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
@@ -18,10 +17,9 @@ import javax.validation.Valid;
 import java.util.List;
 import java.util.stream.Collectors;
 
-@Tag(name = "teams",description = "Teams API")
 @RestController
 @RequestMapping("/api")
-public class TeamController {
+public class TeamsController {
 
     @Autowired
     private ModelMapper mapper;
@@ -41,15 +39,15 @@ public class TeamController {
         return new PageImpl<>(resources,pageable,resources.size());
     }
 
-    @Operation(summary = "Get a team", description = "Get team by Name", tags = {"teams"})
-    @GetMapping("/teams/{name}")
+    @Operation(summary = "Get a team by Name", description = "Get team by Name", tags = {"teams"})
+    @GetMapping("/teams/{teamName}")
     public TeamResource getTeamByName(@PathVariable String name){
         Team team = teamService.getTeamByName(name);
         return convertToResource(team);
     }
 
-    @Operation(summary = "Get a team", description = "Get team by Student Id", tags = {"teams"})
-    @GetMapping("/students/{studentId}")
+    @Operation(summary = "Get Student's teams", description = "Get team by Student Id", tags = {"teams"})
+    @GetMapping("/students/{studentId}/teams")
     public TeamResource getTeamByStudentId(@PathVariable Long studentId){
         return convertToResource(teamService.getTeamByStudentId(studentId));
     }
@@ -73,6 +71,7 @@ public class TeamController {
     public ResponseEntity<?> deleteTeam(@PathVariable Long teamId){
         return teamService.deleteTeam(teamId);
     }
+
     private Team convertToEntity (SaveTeamResource resource){ return mapper.map(resource, Team.class);}
     private TeamResource convertToResource(Team entity){return mapper.map(entity,TeamResource.class);}
 }

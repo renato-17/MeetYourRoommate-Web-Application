@@ -7,8 +7,8 @@ import javax.persistence.*;
 import javax.validation.constraints.NotNull;
 
 @Entity
-@Table(name = "details")
-public class Details extends AuditModel{
+@Table(name = "property_details")
+public class PropertyDetail extends AuditModel{
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
