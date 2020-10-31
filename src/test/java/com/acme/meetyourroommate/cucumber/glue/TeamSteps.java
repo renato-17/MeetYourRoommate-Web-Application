@@ -3,6 +3,7 @@ import com.acme.meetyourroommate.resource.SaveTeamResource;
 import com.acme.meetyourroommate.resource.TeamResource;
 import io.cucumber.java.en.Given;
 import io.cucumber.java.en.Then;
+import io.cucumber.java.en.When;
 import org.springframework.boot.web.server.LocalServerPort;
 import org.springframework.web.client.RestTemplate;
 
@@ -17,9 +18,10 @@ public class TeamSteps {
 
     private Long teamId;
 
-    @Given("I sending team to be created with name {string}")
+    private String url;
+    @Given("I send a team name {string}")
     public void iSendingTeamToBeCreatedWithName(String arg0) {
-        String url = postUrl + ":" + port + "api/teams";
+        url = postUrl + ":" + port + "api/teams";
         SaveTeamResource newTeam = new SaveTeamResource();
         newTeam.setName(arg0);
 
@@ -31,11 +33,16 @@ public class TeamSteps {
         assertNotNull(team);
     }
 
+    @When("I accept and select create team")
+    public void iAcceptAndSelectCreateTeam() {
+        url = postUrl + ":" + port + "/api/teams/" + teamId;
+    }
 
     @Then("I should be able to see my team")
     public void iShouldBeAbleToSeeMyTeam() {
-        String url = postUrl + ":" + port + "/api/teams/" + teamId;
-        TeamResource myPost = restTemplate.getForObject(url, TeamResource.class);
-        assertNotNull(myPost);
+        TeamResource expectedTeam = restTemplate.getForObject(url, TeamResource.class);
+        assertNotNull(expectedTeam);
     }
+
+
 }

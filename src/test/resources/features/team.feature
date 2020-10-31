@@ -1,8 +1,9 @@
-Feature: Student functionality
+Feature: Team functionality
 
-  Scenario Outline: A user gets the teams
+  Scenario Outline: A Student want to Join a Team
 
-    Given I sending team to be created with name "<name>"
+    Given I send a team name "<name>"
+    When I accept and select create team
     Then I should be able to see my team
 
     Examples:

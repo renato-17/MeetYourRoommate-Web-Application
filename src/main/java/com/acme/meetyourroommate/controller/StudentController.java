@@ -57,10 +57,10 @@ public class StudentController {
         return new PageImpl<>(resources,pageable, resources.size());
     }
 
-    @Operation(summary = "Get Students by Dni", description = "Get Students by Dni", tags = {"students"})
-    @GetMapping("/students/{studentDni}")
-    public StudentResource getStudentByDni(@PathVariable String studentDni){
-        return convertToResource(studentService.getStudentByDni(studentDni));
+    @Operation(summary = "Get Students by Id", description = "Get Students by Id", tags = {"students"})
+    @GetMapping("/students/{studentId}")
+    public StudentResource getStudentByDni(@PathVariable Long studentId){
+        return convertToResource(studentService.getStudentById(studentId));
     }
 
     @Operation(summary = "Register a Student", description = "Register a new Student", tags = {"students"})

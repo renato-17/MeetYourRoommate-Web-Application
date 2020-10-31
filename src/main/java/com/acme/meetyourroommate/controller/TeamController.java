@@ -42,7 +42,7 @@ public class TeamController {
     }
 
     @Operation(summary = "Get a team", description = "Get team by Student Id", tags = {"teams"})
-    @GetMapping("/students/{studentId}")
+    @GetMapping("{teamId}/students/{studentId}")
     public TeamResource getTeamByStudentId(@PathVariable Long studentId){
         return convertToResource(teamService.getTeamByStudentId(studentId));
     }
