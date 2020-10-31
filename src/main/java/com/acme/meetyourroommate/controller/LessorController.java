@@ -42,6 +42,12 @@ public class LessorController {
         return new PageImpl<>(resources,pageable, resources.size());
     }
 
+    @Operation(summary = "Get Lessor by Dni", description = "Get Lessor by Dni", tags = {"lessors"})
+    @GetMapping("/lessors/{lessorDni}")
+    public LessorResource getLessorByDni(@PathVariable String lessorDni){
+        return convertToResource(lessorService.getLessorByDni(lessorDni));
+    }
+
     @Operation(summary = "Create Lessor", description = "Create a new lessor", tags = {"lessors"})
     @PostMapping("/lessors")
     public LessorResource createLessor(@Valid @RequestBody SaveLessorResource resource){

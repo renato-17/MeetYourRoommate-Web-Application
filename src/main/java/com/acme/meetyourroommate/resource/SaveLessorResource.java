@@ -40,7 +40,7 @@ public class SaveLessorResource {
 
 
     @NotNull
-    private Boolean bPremium;
+    private Boolean premium;
 
     public String getFirstName() {
         return firstName;
@@ -98,11 +98,12 @@ public class SaveLessorResource {
         this.address = address;
     }
 
-    public Boolean getbPremium() {
-        return bPremium;
+    public Boolean getPremium() {
+        return premium;
     }
 
-    public void setbPremium(Boolean bPremium) {
-        this.bPremium = bPremium;
+    public void setPremium(Boolean premium) {
+        this.premium = premium;
     }
 }
+
