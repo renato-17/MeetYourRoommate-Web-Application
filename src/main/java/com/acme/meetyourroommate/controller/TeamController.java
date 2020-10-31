@@ -41,17 +41,16 @@ public class TeamController {
         return new PageImpl<>(resources,pageable,resources.size());
     }
 
-    @Operation(summary = "Get a team", description = "Get team by Name", tags = {"teams"})
-    @GetMapping("/teams/{name}")
-    public TeamResource getTeamByName(@PathVariable String name){
-        Team team = teamService.getTeamByName(name);
-        return convertToResource(team);
-    }
-
     @Operation(summary = "Get a team", description = "Get team by Student Id", tags = {"teams"})
     @GetMapping("/students/{studentId}")
     public TeamResource getTeamByStudentId(@PathVariable Long studentId){
         return convertToResource(teamService.getTeamByStudentId(studentId));
+    }
+
+    @Operation(summary = "Get a team", description = "Get team by Id", tags = {"teams"})
+    @GetMapping("/teams/{teamId}")
+    public TeamResource getTeamById(@PathVariable Long teamId){
+        return convertToResource(teamService.getTeamById(teamId));
     }
 
     @Operation(summary = "Create a team", description = "Create a new Team", tags = {"teams"})

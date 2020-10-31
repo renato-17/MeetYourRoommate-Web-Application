@@ -1,4 +1,4 @@
-package com.acme.meetyourroommate;
+package com.acme.meetyourroommate.unit;
 
 import com.acme.meetyourroommate.domain.model.Ad;
 import com.acme.meetyourroommate.domain.repository.AdRepository;
