@@ -9,13 +9,4 @@ public class SaveCommentResource {
     @NotBlank
     @Size(max = 250)
     private String text;
-
-    public String getText() {
-        return text;
-    }
-
-    public SaveCommentResource setText(String text) {
-        this.text = text;
-        return this;
-    }
 }

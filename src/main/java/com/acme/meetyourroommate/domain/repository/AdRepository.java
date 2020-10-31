@@ -10,8 +10,6 @@ import java.util.Optional;
 
 public interface AdRepository extends JpaRepository<Ad, Long> {
     Page<Ad> findByPropertyId(Long propertyId, Pageable pageable);
-
     Optional<Ad> findByIdAndPropertyId(Long id, Long propertyId);
-
     public Optional<Ad> findByTitle(String title);
 }

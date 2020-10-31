@@ -40,78 +40,70 @@ public class SaveLessorResource {
 
 
     @NotNull
-    private Boolean bPremium;
+    private Boolean premium;
 
     public String getFirstName() {
         return firstName;
     }
 
-    public SaveLessorResource setFirstName(String firstName) {
+    public void setFirstName(String firstName) {
         this.firstName = firstName;
-        return this;
     }
 
     public String getLastName() {
         return lastName;
     }
 
-    public SaveLessorResource setLastName(String lastName) {
+    public void setLastName(String lastName) {
         this.lastName = lastName;
-        return this;
     }
 
     public String getDni() {
         return dni;
     }
 
-    public SaveLessorResource setDni(String dni) {
+    public void setDni(String dni) {
         this.dni = dni;
-        return this;
     }
 
     public String getPhoneNumber() {
         return phoneNumber;
     }
 
-    public SaveLessorResource setPhoneNumber(String phoneNumber) {
+    public void setPhoneNumber(String phoneNumber) {
         this.phoneNumber = phoneNumber;
-        return this;
     }
 
     public String getGender() {
         return gender;
     }
 
-    public SaveLessorResource setGender(String gender) {
+    public void setGender(String gender) {
         this.gender = gender;
-        return this;
     }
 
     public Date getBirthdate() {
         return birthdate;
     }
 
-    public SaveLessorResource setBirthdate(Date birthdate) {
+    public void setBirthdate(Date birthdate) {
         this.birthdate = birthdate;
-        return this;
     }
 
     public String getAddress() {
         return address;
     }
 
-    public SaveLessorResource setAddress(String address) {
+    public void setAddress(String address) {
         this.address = address;
-        return this;
     }
 
-    public Boolean getbPremium() {
-        return bPremium;
+    public Boolean getPremium() {
+        return premium;
     }
 
-    public SaveLessorResource setbPremium(Boolean bPremium) {
-        this.bPremium = bPremium;
-        return this;
-
+    public void setPremium(Boolean premium) {
+        this.premium = premium;
     }
 }
+

@@ -1,12 +1,13 @@
 package com.acme.meetyourroommate.domain.model;
 
 
+
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
 
 @Entity
 @Table(name = "properties")
-public class Property {
+public class Property extends AuditModel{
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)

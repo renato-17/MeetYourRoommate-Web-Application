@@ -11,26 +11,23 @@ public class TaskResource extends AuditModel {
         return id;
     }
 
-    public TaskResource setId(Long id) {
+    public void setId(Long id) {
         this.id = id;
-        return this;
     }
 
     public String getDescription() {
         return description;
     }
 
-    public TaskResource setDescription(String description) {
+    public void setDescription(String description) {
         this.description = description;
-        return this;
     }
 
     public Boolean getActive() {
         return active;
     }
 
-    public TaskResource setActive(Boolean active) {
+    public void setActive(Boolean active) {
         this.active = active;
-        return this;
     }
 }

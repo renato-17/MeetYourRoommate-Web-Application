@@ -1,6 +1,7 @@
 package com.acme.meetyourroommate.domain.model;
 
 
+import io.swagger.v3.oas.annotations.tags.Tag;
 import org.hibernate.annotations.OnDelete;
 import org.hibernate.annotations.OnDeleteAction;
 
@@ -9,7 +10,7 @@ import javax.validation.constraints.NotNull;
 
 @Entity
 @Table(name = "ads")
-public class Ad extends AuditModel {
+public class Ad extends AuditModel{
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
@@ -25,7 +26,7 @@ public class Ad extends AuditModel {
     private int likesNumber;
 
     @OneToOne(fetch = FetchType.LAZY, optional = false)
-    @JoinColumn(name = "property_id", nullable = false)
+    @JoinColumn(name="property_id", nullable = false)
     @OnDelete(action = OnDeleteAction.CASCADE)
     private Property property;
 

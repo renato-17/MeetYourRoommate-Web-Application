@@ -28,7 +28,7 @@ public class AdServiceImpl implements AdService {
     @Override
     public Ad getAdByIdAndPropertyId(Long propertyId, Long adId) {
         return adRepository.findByIdAndPropertyId(adId, propertyId)
-                .orElseThrow(() -> new ResourceNotFoundException(
+                .orElseThrow(()->new ResourceNotFoundException(
                         "Ad not found with Id " + adId +
                                 " and PropertyId " + propertyId));
     }
@@ -38,35 +38,35 @@ public class AdServiceImpl implements AdService {
         return propertyRepository.findById(propertyId).map(property -> {
             ad.setProperty(property);
             return adRepository.save(ad);
-        }).orElseThrow(() -> new ResourceNotFoundException(
+        }).orElseThrow(()-> new ResourceNotFoundException(
                 "Property", "Id", propertyId));
     }
 
     @Override
     public Ad updateAd(Long propertyId, Long adId, Ad adDetails) {
-        if (!propertyRepository.existsById(propertyId))
+        if(!propertyRepository.existsById(propertyId))
             throw new ResourceNotFoundException("Property", "Id", propertyId);
         return adRepository.findById(adId).map(ad -> {
             ad.setTitle(adDetails.getTitle());
             ad.setViewsNumber(adDetails.getViewsNumber());
             ad.setLikesNumber(adDetails.getLikesNumber());
             return adRepository.save(ad);
-        }).orElseThrow(() -> new ResourceNotFoundException("Ad", "Id", adId));
+        }).orElseThrow(()->new ResourceNotFoundException("Ad", "Id", adId));
     }
 
     @Override
     public ResponseEntity<?> deleteAd(Long propertyId, Long adId) {
-        if (!propertyRepository.existsById(propertyId))
+        if(!propertyRepository.existsById(propertyId))
             throw new ResourceNotFoundException("Property", "Id", propertyId);
         return adRepository.findById(adId).map(ad -> {
             adRepository.delete(ad);
             return ResponseEntity.ok().build();
-        }).orElseThrow(() -> new ResourceNotFoundException("Ad", "Id", adId));
+        }).orElseThrow(()->new ResourceNotFoundException("Ad", "Id", adId));
     }
 
     @Override
     public Ad getAdByTitle(String title) {
         return adRepository.findByTitle(title)
-                .orElseThrow(() -> new ResourceNotFoundException("Ad", "Title", title));
+                .orElseThrow(()->new ResourceNotFoundException("Ad", "Title", title));
     }
 }

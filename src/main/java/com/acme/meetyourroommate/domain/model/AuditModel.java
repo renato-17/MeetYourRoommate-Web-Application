@@ -13,8 +13,7 @@ import java.util.Date;
 @JsonIgnoreProperties(value = {"createdAt", "updatedAt"}, allowGetters = true)
 public abstract class AuditModel {
     @Temporal(TemporalType.TIMESTAMP) //para que salga la hora
-    @Column(name = "created_at", nullable = false, updatable = false)
-    //notacio de columnas de tabla, no nulo, no actualizable
+    @Column(name = "created_at", nullable = false, updatable = false) //notacio de columnas de tabla, no nulo, no actualizable
     @CreatedDate
     private Date createdAt;
 

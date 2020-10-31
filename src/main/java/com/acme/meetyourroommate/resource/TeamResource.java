@@ -8,17 +8,15 @@ public class TeamResource {
         return id;
     }
 
-    public TeamResource setId(Long id) {
+    public void setId(Long id) {
         this.id = id;
-        return this;
     }
 
     public String getName() {
         return name;
     }
 
-    public TeamResource setName(String name) {
+    public void setName(String name) {
         this.name = name;
-        return this;
     }
 }

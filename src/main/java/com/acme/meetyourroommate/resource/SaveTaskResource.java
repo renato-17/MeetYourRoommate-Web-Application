@@ -15,8 +15,7 @@ public class SaveTaskResource {
         return description;
     }
 
-    public SaveTaskResource setDescription(String description) {
+    public void setDescription(String description) {
         this.description = description;
-        return this;
     }
 }

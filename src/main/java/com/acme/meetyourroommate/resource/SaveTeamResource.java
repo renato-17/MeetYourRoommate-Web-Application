@@ -16,8 +16,7 @@ public class SaveTeamResource {
         return name;
     }
 
-    public SaveTeamResource setName(String name) {
+    public void setName(String name) {
         this.name = name;
-        return this;
     }
 }

@@ -8,12 +8,8 @@ import org.springframework.http.ResponseEntity;
 
 public interface CommentService {
     Page<Comment> getAllCommentsByAdId(Long adId, Pageable pageable);
-
     Comment getCommentByIdAndAdId(Long adId, Long commentId);
-
     Comment createComment(Long adId, Comment comment);
-
     Comment updateComment(Long adId, Long commentId, Comment commentDetails);
-
     ResponseEntity<?> deleteComment(Long adId, Long commentId);
 }

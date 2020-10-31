@@ -1,14 +1,16 @@
 package com.acme.meetyourroommate.domain.model;
 
+import io.swagger.v3.oas.annotations.tags.Tag;
 import org.hibernate.annotations.OnDelete;
 import org.hibernate.annotations.OnDeleteAction;
 
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
 
+
 @Entity
 @Table(name = "comments")
-public class Comment extends AuditModel {
+public class Comment extends AuditModel{
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
@@ -18,7 +20,7 @@ public class Comment extends AuditModel {
     private String text;
 
     @ManyToOne(fetch = FetchType.LAZY, optional = false)
-    @JoinColumn(name = "ad_id", nullable = false)
+    @JoinColumn(name="ad_id", nullable = false)
     @OnDelete(action = OnDeleteAction.CASCADE)
     private Ad ad;
 

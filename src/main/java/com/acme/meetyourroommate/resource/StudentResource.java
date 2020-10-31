@@ -1,5 +1,10 @@
 package com.acme.meetyourroommate.resource;
 
+import javax.persistence.Column;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.validation.constraints.NotNull;
 import java.util.Date;
 
 public class StudentResource {
@@ -13,104 +18,93 @@ public class StudentResource {
     private String address;
     private String description;
     private String hobbies;
-    private Boolean bSmoker;
+    private Boolean smoker;
 
     public Long getId() {
         return id;
     }
 
-    public StudentResource setId(Long id) {
+    public void setId(Long id) {
         this.id = id;
-        return this;
     }
 
     public String getFirstName() {
         return firstName;
     }
 
-    public StudentResource setFirstName(String firstName) {
+    public void setFirstName(String firstName) {
         this.firstName = firstName;
-        return this;
     }
 
     public String getLastName() {
         return lastName;
     }
 
-    public StudentResource setLastName(String lastName) {
+    public void setLastName(String lastName) {
         this.lastName = lastName;
-        return this;
     }
 
     public String getDni() {
         return dni;
     }
 
-    public StudentResource setDni(String dni) {
+    public void setDni(String dni) {
         this.dni = dni;
-        return this;
     }
 
     public String getPhoneNumber() {
         return phoneNumber;
     }
 
-    public StudentResource setPhoneNumber(String phoneNumber) {
+    public void setPhoneNumber(String phoneNumber) {
         this.phoneNumber = phoneNumber;
-        return this;
     }
 
     public String getGender() {
         return gender;
     }
 
-    public StudentResource setGender(String gender) {
+    public void setGender(String gender) {
         this.gender = gender;
-        return this;
     }
 
     public Date getBirthdate() {
         return birthdate;
     }
 
-    public StudentResource setBirthdate(Date birthdate) {
+    public void setBirthdate(Date birthdate) {
         this.birthdate = birthdate;
-        return this;
     }
 
     public String getAddress() {
         return address;
     }
 
-    public StudentResource setAddress(String address) {
+    public void setAddress(String address) {
         this.address = address;
-        return this;
     }
 
     public String getDescription() {
         return description;
     }
 
-    public StudentResource setDescription(String description) {
+    public void setDescription(String description) {
         this.description = description;
-        return this;
     }
 
     public String getHobbies() {
         return hobbies;
     }
 
-    public StudentResource setHobbies(String hobbies) {
+    public void setHobbies(String hobbies) {
         this.hobbies = hobbies;
-        return this;
     }
 
-    public Boolean getbSmoker() {
-        return bSmoker;
+    public Boolean getSmoker() {
+        return smoker;
     }
 
-    public StudentResource setbSmoker(Boolean bSmoker) {
-        this.bSmoker = bSmoker;
-        return this;
+    public void setSmoker(Boolean smoker) {
+        this.smoker = smoker;
     }
 }

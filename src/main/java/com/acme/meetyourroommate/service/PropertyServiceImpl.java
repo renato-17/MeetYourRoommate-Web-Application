@@ -1,6 +1,5 @@
 package com.acme.meetyourroommate.service;
 
-import com.acme.meetyourroommate.domain.model.Ad;
 import com.acme.meetyourroommate.domain.model.Property;
 import com.acme.meetyourroommate.domain.repository.PropertyRepository;
 import com.acme.meetyourroommate.domain.service.PropertyService;
@@ -27,7 +26,7 @@ public class PropertyServiceImpl implements PropertyService {
     public Property getPropertyById(Long propertyId) {
         return propertyRepository.findById(propertyId)
                 .orElseThrow(() ->
-                        new ResourceNotFoundException("Property", "Id", propertyId));
+        new ResourceNotFoundException("Property", "Id", propertyId));
     }
 
     @Override
@@ -39,7 +38,7 @@ public class PropertyServiceImpl implements PropertyService {
     public Property updateProperty(Long propertyId, Property propertyRequest) {
         Property property = propertyRepository.findById(propertyId)
                 .orElseThrow(() -> new ResourceNotFoundException(
-                        "PropertyId", "Id", propertyId));
+                        "PropertyId","Id",propertyId));
         property.setAddress(propertyRequest.getAddress());
         property.setDescription(propertyRequest.getDescription());
         return propertyRepository.save(property);
@@ -47,16 +46,9 @@ public class PropertyServiceImpl implements PropertyService {
 
     @Override
     public ResponseEntity<?> deleteProperty(Long propertyId) {
-        Property property = propertyRepository.findById(propertyId)
-                .orElseThrow(() -> new ResourceNotFoundException("Property", "Id", propertyId));
+        Property property =propertyRepository.findById(propertyId)
+                .orElseThrow(()->new ResourceNotFoundException("Property", "Id", propertyId));
         propertyRepository.delete(property);
         return ResponseEntity.ok().build();
     }
-
-    @Override
-    public Property getPropertyByAddress(String address) {
-        return propertyRepository.findByAddress(address)
-                .orElseThrow(() -> new ResourceNotFoundException("Property", "Address", address));
-    }
-
 }

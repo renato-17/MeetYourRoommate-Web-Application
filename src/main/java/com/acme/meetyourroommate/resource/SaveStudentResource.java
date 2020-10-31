@@ -50,103 +50,85 @@ public class SaveStudentResource {
     private String hobbies;
 
     @NotNull
-    private Boolean bSmoker;
+    private Boolean smoker;
 
     public String getFirstName() {
         return firstName;
     }
 
-    public SaveStudentResource setFirstName(String firstName) {
+    public void setFirstName(String firstName) {
         this.firstName = firstName;
-        return this;
     }
 
     public String getLastName() {
         return lastName;
     }
 
-    public SaveStudentResource setLastName(String lastName) {
+    public void setLastName(String lastName) {
         this.lastName = lastName;
-        return this;
-
     }
 
     public String getDni() {
         return dni;
     }
 
-    public SaveStudentResource setDni(String dni) {
+    public void setDni(String dni) {
         this.dni = dni;
-        return this;
-
     }
 
     public String getPhoneNumber() {
         return phoneNumber;
     }
 
-    public SaveStudentResource setPhoneNumber(String phoneNumber) {
+    public void setPhoneNumber(String phoneNumber) {
         this.phoneNumber = phoneNumber;
-        return this;
-
     }
 
     public String getGender() {
         return gender;
     }
 
-    public SaveStudentResource setGender(String gender) {
+    public void setGender(String gender) {
         this.gender = gender;
-        return this;
-
     }
 
     public Date getBirthdate() {
         return birthdate;
     }
 
-    public SaveStudentResource setBirthdate(Date birthdate) {
+    public void setBirthdate(Date birthdate) {
         this.birthdate = birthdate;
-        return this;
-
     }
 
     public String getAddress() {
         return address;
     }
 
-    public SaveStudentResource setAddress(String address) {
+    public void setAddress(String address) {
         this.address = address;
-        return this;
-
     }
 
     public String getDescription() {
         return description;
     }
 
-    public SaveStudentResource setDescription(String description) {
+    public void setDescription(String description) {
         this.description = description;
-        return this;
-
     }
 
     public String getHobbies() {
         return hobbies;
     }
 
-    public SaveStudentResource setHobbies(String hobbies) {
+    public void setHobbies(String hobbies) {
         this.hobbies = hobbies;
-        return this;
-
     }
 
-    public Boolean getbSmoker() {
-        return bSmoker;
+    public Boolean getSmoker() {
+        return smoker;
     }
 
-    public SaveStudentResource setbSmoker(Boolean bSmoker) {
-        this.bSmoker = bSmoker;
-        return this;
+    public void setSmoker(Boolean bSmoker) {
+        this.smoker = bSmoker;
     }
 }
