@@ -4,6 +4,7 @@ import com.acme.meetyourroommate.domain.model.Property;
 import com.acme.meetyourroommate.domain.service.PropertyService;
 import com.acme.meetyourroommate.resource.PropertyResource;
 import com.acme.meetyourroommate.resource.SavePropertyResource;
+import com.acme.meetyourroommate.resource.StudentResource;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.tags.Tag;
 import org.modelmapper.ModelMapper;
@@ -40,6 +41,11 @@ public class PropertiesController {
         return new PageImpl<>(resources, pageable, resources.size());
     }
 
+    @GetMapping("/properties/{propertyId}")
+    public PropertyResource getStudentByDni(@PathVariable Long propertyId){
+        return convertToResource(propertyService.getPropertyById(propertyId));
+    }
+    
     @Operation(summary = "Create a Property", description = "Create a new Property", tags = {"properties"})
     @PostMapping("/properties")
     public PropertyResource createProperty(@Valid @RequestBody SavePropertyResource resource) {
