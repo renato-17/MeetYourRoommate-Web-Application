@@ -28,7 +28,7 @@ public class PropertyDetailsController {
     private PropertyDetailService propertyDetailService;
 
 
-    @Operation(summary = "Get PropertyDetails", description = "Get PropertyDetails", tags = {"propertyDetails"})
+    @Operation(summary = "Get PropertyDetails", description = "Get PropertyDetails", tags = {"property_details"})
     @GetMapping("/propertydetails")
     public Page<PropertyDetailResource> getAllPropertyDetails(Pageable pageable){
         Page<PropertyDetail> propertyDetailsPage = propertyDetailService.getAllPropertyDetails(pageable);
@@ -39,21 +39,21 @@ public class PropertyDetailsController {
         return new PageImpl<>(resources, pageable, resources.size());
     }
 
-    @Operation(summary = "Create PropertyDetail", description = "Create a new PropertyDetail", tags = {"propertyDetails"})
+    @Operation(summary = "Create PropertyDetail", description = "Create a new PropertyDetail", tags = {"property_details"})
     @PostMapping("/property/{propertyId}/propertydetails")
     public PropertyDetailResource createPropertyDetail(@Valid @RequestBody SavePropertyDetailResource resource) {
         PropertyDetail propertyDetail = convertToEntity(resource);
         return convertToResource(propertyDetailService.createPropertyDetail(propertyDetail));
     }
 
-    @Operation(summary = "Update PropertyDetail", description = "Update PropertyDetail with given Id", tags = {"propertyDetails"})
+    @Operation(summary = "Update PropertyDetail", description = "Update PropertyDetail with given Id", tags = {"property_details"})
     @PutMapping("/propertydetails/{propertyDetailId}")
     public PropertyDetailResource updatePropertyDetail(@PathVariable Long propertyDetailId, @Valid @RequestBody SavePropertyDetailResource resource) {
         PropertyDetail propertyDetail = convertToEntity(resource);
         return convertToResource(propertyDetailService.updatePropertyDetail(propertyDetailId,propertyDetail));
     }
 
-    @Operation(summary = "Delete PropertyDetail", description = "Delete PropertyDetail with given Id", tags = {"propertyDetails"})
+    @Operation(summary = "Delete PropertyDetail", description = "Delete PropertyDetail with given Id", tags = {"property_details"})
     @DeleteMapping("/propertydetails/{propertyDetailId}")
     public ResponseEntity<?> deleteDetails(@PathVariable Long propertyDetailId){
         return propertyDetailService.deletePropertyDetail(propertyDetailId);

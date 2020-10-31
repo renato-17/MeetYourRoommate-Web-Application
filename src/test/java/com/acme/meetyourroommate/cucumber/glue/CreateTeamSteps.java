@@ -9,7 +9,7 @@ import org.springframework.web.client.RestTemplate;
 
 import static org.junit.Assert.assertNotNull;
 
-public class TeamSteps {
+public class CreateTeamSteps {
 
     @LocalServerPort
     private String port;

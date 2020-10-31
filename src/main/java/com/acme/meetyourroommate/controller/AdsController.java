@@ -27,7 +27,7 @@ public class AdsController {
     @Autowired
     private AdService adService;
 
-    @Operation(summary = "Get Ads By Property", description = "Get Ads associated to given Property", tags = {"properties"})
+    @Operation(summary = "Get Ads By Property", description = "Get Ads associated to given Property", tags = {"ads"})
     @GetMapping("properties/{propertyId}/ads")
     public Page<AdResource> getAllAdsByPropertyId(
             @PathVariable Long propertyId, Pageable pageable) {

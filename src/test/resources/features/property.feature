@@ -5,5 +5,5 @@ Feature: Get Properties feature
       |address           | description         |
       |Av. Larco 123     | Departamento para 2 |
       |Av. Barranco 452  | Mini departamento   |
-    #When the user requests all the properties
-    #Then all the properties are returned
+    When the user requests all the properties
+    Then all the properties are returned
