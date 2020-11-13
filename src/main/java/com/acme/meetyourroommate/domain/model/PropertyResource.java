@@ -22,8 +22,8 @@ public class PropertyResource extends AuditModel{
     private Date date;
 
     @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "details_id",nullable = false)
-    private PropertyDetail details;
+    @JoinColumn(name = "property_detail_id",nullable = false)
+    private PropertyDetail propertyDetail;
 
     public Long getId() {
         return id;
@@ -49,11 +49,11 @@ public class PropertyResource extends AuditModel{
         this.date = date;
     }
 
-    public PropertyDetail getDetails() {
-        return details;
+    public PropertyDetail getPropertyDetail() {
+        return propertyDetail;
     }
 
-    public void setDetails(PropertyDetail details) {
-        this.details = details;
+    public void setPropertyDetail(PropertyDetail propertyDetail) {
+        this.propertyDetail = propertyDetail;
     }
 }

@@ -5,9 +5,9 @@ import org.springframework.data.domain.Pageable;
 import org.springframework.http.ResponseEntity;
 
 public interface PropertyResourceService {
-        Page<PropertyResource> getAllPropertyResources(Pageable pageable);
-        PropertyResource getResourceById(Long resourceId);
-        PropertyResource createPropertyResource(PropertyResource propertyResource);
-        PropertyResource updatePropertyResource(Long propertyResourceId, PropertyResource propertyResourceRequest);
-        ResponseEntity<?> deletePropertyResource(Long propertyResourceId);
+        Page<PropertyResource> getAllPropertyResourcesByPropertyId(Long propertyId,Pageable pageable);
+        PropertyResource getResourceByIdAndPropertyId(Long propertyId,Long resourceId);
+        PropertyResource createPropertyResource(Long propertyId,PropertyResource propertyResource);
+        PropertyResource updatePropertyResource(Long propertyId,Long propertyResourceId, PropertyResource propertyResourceRequest);
+        ResponseEntity<?> deletePropertyResource(Long propertyId,Long propertyResourceId);
 }

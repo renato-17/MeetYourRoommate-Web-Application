@@ -29,13 +29,10 @@ public class CampusesController {
     @Autowired
     private CampusService campusService;
 
-    @Autowired
-    private CampusRepository campusRepository;
-
-    @Operation(summary = "Get All Campuses", description = "Get All Campuses by Pages", tags = {"campuses"})
-    @GetMapping("/campuses")
-    public Page<CampusResource> getAllCampuses(Pageable pageable){
-        Page<Campus> campusPage = campusService.getAllCampuses(pageable);
+    @Operation(summary = "Get All Campuses by Study Center", description = "Get All Campuses by its Study Center", tags = {"campuses"})
+    @GetMapping("/study-centers/{studyCenterId}/campuses")
+    public Page<CampusResource> getAllCampuses(@PathVariable Long studyCenterId,Pageable pageable){
+        Page<Campus> campusPage = campusService.getAllCampusesByStudyCenterId(studyCenterId,pageable);
         List<CampusResource> resources = campusPage.getContent()
                 .stream()
                 .map(this::convertToResource)
@@ -44,23 +41,35 @@ public class CampusesController {
     }
 
     @Operation(summary = "Create Campus", description = "Create a new Campus", tags = {"campuses"})
-    @PostMapping("/campuses")
-    public CampusResource createCampus(@Valid @RequestBody SaveCampusResource resource) {
+    @PostMapping("/study-centers/{studyCenterId}/campuses")
+    public CampusResource createCampus(@PathVariable Long studyCenterId,@Valid @RequestBody SaveCampusResource resource) {
         Campus campus = convertToEntity(resource);
-        return convertToResource(campusService.createCampuses(campus));
+        return convertToResource(campusService.createCampuses(studyCenterId,campus));
+    }
+
+    @Operation(summary = "Get Campus", description = "Get campus for given Id and Study Center Id", tags = {"campuses"})
+    @GetMapping("/study-centers/{studyCenterId}/campuses/{campusId}")
+    public CampusResource getCampusByIdAndStudyCenterId(
+            @PathVariable(name = "studyCenterId") Long studyCenterId,
+            @PathVariable(name = "campusId") Long campusId) {
+        return convertToResource(campusService.getCampusesByIdAndStudyCenterId(studyCenterId,campusId));
     }
 
     @Operation(summary = "Update Campus", description = "Update Campus for given Id", tags = {"campuses"})
-    @PutMapping("/campuses/{campusId}")
-    public CampusResource updatePost(@PathVariable Long campusId, @RequestBody SaveCampusResource resource) {
+    @PutMapping("/study-centers/{studyCenterId}/campuses/{campusId}")
+    public CampusResource updatePost(
+            @PathVariable(name = "studyCenterId") Long studyCenterId,
+            @PathVariable(name = "campusId") Long campusId,
+            @RequestBody SaveCampusResource resource) {
         Campus campus = convertToEntity(resource);
-        return convertToResource(campusService.updateCampuses(campusId,campus));
+        return convertToResource(campusService.updateCampuses(studyCenterId,campusId,campus));
     }
 
     @Operation(summary = "Delete Campus", description = "Delete Campus with given Id", tags = {"campuses"})
-    @DeleteMapping("/campuses/{campusId}")
-    public ResponseEntity<?> deleteCampus(@PathVariable Long campusId){
-        return campusService.deleteCampuses(campusId);
+    @DeleteMapping("/study-centers/{studyCenterId}/campuses/{campusId}")
+    public ResponseEntity<?> deleteCampus( @PathVariable(name = "studyCenterId") Long studyCenterId,
+                                           @PathVariable(name = "campusId") Long campusId){
+        return campusService.deleteCampuses(studyCenterId,campusId);
     }
 
     private Campus convertToEntity(SaveCampusResource resource) {

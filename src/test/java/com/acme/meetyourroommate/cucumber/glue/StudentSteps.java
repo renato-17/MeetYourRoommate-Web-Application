@@ -36,7 +36,7 @@ public class StudentSteps {
         newStudent.setAddress(arg6);
         newStudent.setDescription(arg7);
         newStudent.setHobbies(arg8);
-        newStudent.setbSmoker(arg9.equals("1"));
+        newStudent.setSmoker(arg9.equals("1"));
 
         assertNotNull(newStudent);
     }

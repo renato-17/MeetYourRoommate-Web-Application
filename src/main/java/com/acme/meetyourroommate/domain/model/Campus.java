@@ -9,6 +9,7 @@ import javax.validation.constraints.Size;
 public class Campus extends AuditModel {
 
     @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
     @NotNull

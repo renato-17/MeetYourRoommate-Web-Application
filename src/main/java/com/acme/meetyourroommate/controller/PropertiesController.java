@@ -2,6 +2,7 @@ package com.acme.meetyourroommate.controller;
 
 import com.acme.meetyourroommate.domain.model.Property;
 import com.acme.meetyourroommate.domain.service.PropertyService;
+import com.acme.meetyourroommate.resource.CampusResource;
 import com.acme.meetyourroommate.resource.PropertyResource;
 import com.acme.meetyourroommate.resource.SavePropertyResource;
 import com.fasterxml.jackson.core.JsonProcessingException;
@@ -27,15 +28,9 @@ public class PropertiesController {
 
     @Autowired
     private ModelMapper mapper;
-
-    /*public Page<Property> getAllProperties(Pageable pageable) {
-        return propertyRepository.findAll(pageable);
-    }
-    public List<Property> getAllProperties() {
-        return propertyRepository.findAll();
-    }*/
     @Autowired
     private PropertyService propertyService;
+
 
     @Operation(summary = "Get Properties", description = "Get All Properties by Pages", tags = {"properties"})
     @ApiResponses(value = {
@@ -50,36 +45,39 @@ public class PropertiesController {
                 .collect(Collectors.toList());
         return new PageImpl<>(resources, pageable, resources.size());
     }
-    /*public Property createProperty(@Valid @RequestBody Property property) {
-        return propertyRepository.save(property);
-    }*/
+
+    @Operation(summary = "Get Property", description = "Get Property", tags = {"properties"})
+    @GetMapping("/lessors/{lessorId}/properties/{propertyId}")
+    public PropertyResource getPropertyByIdAndLessorId(
+            @PathVariable(name = "lessorId") Long lessorId,
+            @PathVariable(name = "propertyId") Long propertyId
+    ){
+        return convertToResource(propertyService.getPropertyByIdAndLessorId(lessorId,propertyId));
+    }
+
     @Operation(summary = "Create Property", description = "Create a new Property", tags = {"properties"})
-    @PostMapping("/properties")
-    public PropertyResource createProperty(@Valid @RequestBody SavePropertyResource resource) {
+    @PostMapping("/lessors/{lessorId}/properties")
+    public PropertyResource createProperty(@PathVariable Long lessorId,@Valid @RequestBody SavePropertyResource resource) {
         Property property = convertToEntity(resource);
-        return convertToResource(propertyService.createProperty(property));
+        return convertToResource(propertyService.createProperty(lessorId,property));
     }
 
 
     @Operation(summary = "Update Property", description = "Update Property for given Id", tags = {"properties"})
-    @PutMapping("/properties/{propertyId}")
-    public PropertyResource updateProperty(@PathVariable Long propertyId, @Valid @RequestBody SavePropertyResource resource) {
+    @PutMapping("/lessors/{lessorId}/properties/{propertyId}")
+    public PropertyResource updateProperty(
+            @PathVariable(name = "lessorId") Long lessorId,
+            @PathVariable(name = "propertyId") Long propertyId,
+            @Valid @RequestBody SavePropertyResource resource) {
         Property property = convertToEntity(resource);
-        return convertToResource(propertyService.updateProperty(propertyId, property));
+        return convertToResource(propertyService.updateProperty(lessorId,propertyId, property));
     }
 
-
-    /*public ResponseEntity<?> deleteProperty(@PathVariable Long propertyId) {
-        return propertyRepository.findById(propertyId).map(property -> {
-            propertyRepository.delete(property);
-            return  ResponseEntity.ok().build();
-        }).orElseThrow(()-> new ResourceNotFoundException(
-                "PropertyId " + propertyId + " not found"));
-    }*/
     @Operation(summary = "Delete Property", description = "Delete Properties with given Id", tags = {"properties"})
-    @DeleteMapping("/properties/{propertyId}")
-    public ResponseEntity<?> deleteProperty(@PathVariable Long propertyId) {
-        return propertyService.deleteProperty(propertyId);
+    @DeleteMapping("/lessors/{lessorId}/properties/{propertyId}")
+    public ResponseEntity<?> deleteProperty(@PathVariable(name = "lessorId") Long lessorId,
+                                            @PathVariable(name = "propertyId") Long propertyId) {
+        return propertyService.deleteProperty(lessorId,propertyId);
     }
 
     private Property convertToEntity(SavePropertyResource resource) {

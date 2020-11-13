@@ -10,7 +10,7 @@ public interface StudentService {
     Page<Student> getAllStudents(Pageable pageable);
     Student getStudentById(Long studentId);
     Student getStudentByDni(String studentDni);
-    Student createStudent(Student student);
+    Student createStudent(Long studyCenterId,Long campusId,Student student);
     Student updateStudent(Student studentRequest, Long studentId);
     ResponseEntity<?> deleteStudent(Long studentId);
 

@@ -1,7 +1,9 @@
 package com.acme.meetyourroommate.service;
 
+import com.acme.meetyourroommate.domain.model.Campus;
 import com.acme.meetyourroommate.domain.model.Student;
 import com.acme.meetyourroommate.domain.model.Team;
+import com.acme.meetyourroommate.domain.repository.CampusRepository;
 import com.acme.meetyourroommate.domain.repository.StudentRepository;
 import com.acme.meetyourroommate.domain.repository.TeamRepository;
 import com.acme.meetyourroommate.domain.service.StudentService;
@@ -23,6 +25,8 @@ public class StudentServiceImpl implements StudentService {
     @Autowired
     private TeamRepository teamRepository;
 
+    @Autowired
+    private CampusRepository campusRepository;
     @Override
     public Page<Student> getAllStudents(Pageable pageable) {
         return studentRepository.findAll(pageable);
@@ -41,7 +45,10 @@ public class StudentServiceImpl implements StudentService {
     }
 
     @Override
-    public Student createStudent(Student student) {
+    public Student createStudent(Long studyCenterId,Long campusId,Student student) {
+        Campus campus = campusRepository.findByIdAndStudyCenterId(campusId,studyCenterId)
+                .orElseThrow(()-> new ResourceNotFoundException("Campus","Id",campusId));
+        student.setCampus(campus);
         return studentRepository.save(student);
     }
 
@@ -56,7 +63,7 @@ public class StudentServiceImpl implements StudentService {
         student.setAddress(studentRequest.getAddress());
         student.setDescription(studentRequest.getDescription());
         student.setHobbies(studentRequest.getHobbies());
-        student.setbSmoker(studentRequest.getbSmoker());
+        student.setSmoker(studentRequest.getSmoker());
 
         return studentRepository.save(student);
     }

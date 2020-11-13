@@ -7,13 +7,13 @@ import javax.validation.constraints.NotNull;
 public class Lessor extends Person {
 
     @NotNull
-    private Boolean bPremium;
+    private Boolean premium;
 
-    public Boolean getbPremium() {
-        return bPremium;
+    public Boolean getPremium() {
+        return premium;
     }
 
-    public void setbPremium(Boolean bPremium) {
-        this.bPremium = bPremium;
+    public void setPremium(Boolean premium) {
+        this.premium = premium;
     }
 }

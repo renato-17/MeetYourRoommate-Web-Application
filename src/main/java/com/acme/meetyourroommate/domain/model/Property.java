@@ -19,6 +19,10 @@ public class Property {
     @NotNull
     private String description;
 
+    @ManyToOne(fetch = FetchType.LAZY, optional = false)
+    @JoinColumn(name = "lessor_id", nullable = false)
+    private Lessor lessor;
+
     public Long getId() {
         return id;
     }
@@ -44,5 +48,13 @@ public class Property {
     public Property setDescription(String description) {
         this.description = description;
         return this;
+    }
+
+    public Lessor getLessor() {
+        return lessor;
+    }
+
+    public void setLessor(Lessor lessor) {
+        this.lessor = lessor;
     }
 }

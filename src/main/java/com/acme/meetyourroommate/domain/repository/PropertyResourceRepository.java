@@ -8,6 +8,6 @@ import org.springframework.data.jpa.repository.JpaRepository;
 import java.util.Optional;
 
 public interface PropertyResourceRepository extends JpaRepository<PropertyResource, Long> {
-    Page<PropertyResource> findByDetailsId(Long detailsId, Pageable pageable);
-    Optional<PropertyResource> findByIdAndDetailsId(Long id, Long detailsId);
+    Page<PropertyResource> findByPropertyDetailId(Long propertyDetailId, Pageable pageable);
+    Optional<PropertyResource> findByIdAndPropertyDetailId(Long propertyDetailId, Long propertyResourceId);
 }

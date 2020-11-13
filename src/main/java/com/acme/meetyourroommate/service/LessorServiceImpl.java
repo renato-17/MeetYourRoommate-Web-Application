@@ -46,7 +46,7 @@ public class LessorServiceImpl implements LessorService {
         lessor.setLastName(lessorRequest.getLastName());
         lessor.setPhoneNumber(lessorRequest.getPhoneNumber());
         lessor.setAddress(lessorRequest.getAddress());
-        lessor.setbPremium(lessorRequest.getbPremium());
+        lessor.setPremium(lessorRequest.getPremium());
 
         return lessorRepository.save(lessor);
     }

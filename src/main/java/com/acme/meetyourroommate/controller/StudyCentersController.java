@@ -29,7 +29,7 @@ public class StudyCentersController {
     private StudyCenterService studyCenterService;
 
     @Operation(summary = "Get All StudyCenters", description = "Get All StudyCenters", tags = {"studyCenters"})
-    @GetMapping("/studyCenters")
+    @GetMapping("/study-centers")
     public Page<StudyCenterResource> getAllStudyCenters(Pageable pageable){
         Page<StudyCenter> studyCenterPage = studyCenterService.getAllStudyCenters(pageable);
         List<StudyCenterResource> resources = studyCenterPage.getContent()
@@ -40,21 +40,21 @@ public class StudyCentersController {
     }
 
     @Operation(summary = "Create a StudyCenter", description = "Create a new StudyCenter", tags = {"studyCenters"})
-    @PostMapping("/studyCenters")
+    @PostMapping("/study-centers")
     public StudyCenterResource createStudyCenter(@Valid @RequestBody SaveStudyCenterResource resource){
         StudyCenter studyCenter = convertToEntity(resource);
         return convertToResource(studyCenterService.createStudyCenter(studyCenter));
     }
 
     @Operation(summary = "Update a StudyCenter", description = "Update an existing StudyCenter with given Id", tags = {"studyCenters"})
-    @PutMapping("/studyCenters/{studyCenterId}")
+    @PutMapping("/study-centers/{studyCenterId}")
     public StudyCenterResource updateStudyCenter(@PathVariable Long studyCenterId, @RequestBody SaveStudyCenterResource resource) {
         StudyCenter studyCenter = convertToEntity(resource);
         return convertToResource(studyCenterService.updateStudyCenter(studyCenterId,studyCenter));
     }
 
     @Operation(summary = "Delete a StudyCenter", description = "Delete an existing StudyCenter with given Id", tags = {"studyCenters"})
-    @DeleteMapping("/studyCenters/{studyCenterId}")
+    @DeleteMapping("/study-centers/{studyCenterId}")
     public ResponseEntity<?> deleteStudyCenter(@PathVariable Long studyCenterId){
         return studyCenterService.deleteStudyCenter(studyCenterId);
     }

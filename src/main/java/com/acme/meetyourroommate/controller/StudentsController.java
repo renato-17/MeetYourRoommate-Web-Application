@@ -65,7 +65,7 @@ public class StudentsController {
     @PostMapping("/students")
     public StudentResource createStudent(@Valid @RequestBody SaveStudentResource resource){
         Student student = convertToEntity(resource);
-        return convertToResource(studentService.createStudent(student));
+        return convertToResource(studentService.createStudent(resource.getStudyCenterId(), resource.getCampusId(), student));
     }
 
     @Operation(summary = "Join a Team ", description = "Make a Student join a Team", tags = {"students"})

@@ -21,8 +21,18 @@ public class AdServiceImpl implements AdService {
     private AdRepository adRepository;
 
     @Override
+    public Page<Ad> getAllAds(Pageable pageable){
+        return adRepository.findAll(pageable);
+    }
+    @Override
     public Page<Ad> getAllAdsByPropertyId(Long propertyId, Pageable pageable) {
         return adRepository.findByPropertyId(propertyId, pageable);
+    }
+
+    @Override
+    public Ad getAdById(Long adId){
+        return adRepository.findById(adId)
+                .orElseThrow(()-> new ResourceNotFoundException("Ad","id",adId));
     }
 
     @Override

@@ -6,7 +6,10 @@ import org.springframework.data.domain.Pageable;
 import org.springframework.http.ResponseEntity;
 
 public interface AdService {
+    Page<Ad> getAllAds(Pageable pageable);
+
     Page<Ad> getAllAdsByPropertyId(Long propertyId, Pageable pageable);
+    Ad getAdById(Long adId);
 
     Ad getAdByIdAndPropertyId(Long propertyId, Long adId);
 

@@ -1,5 +1,6 @@
 package com.acme.meetyourroommate.service;
 
+import com.acme.meetyourroommate.domain.model.Property;
 import com.acme.meetyourroommate.domain.model.PropertyDetail;
 import com.acme.meetyourroommate.domain.repository.PropertyDetailRepository;
 import com.acme.meetyourroommate.domain.repository.PropertyRepository;
@@ -9,8 +10,11 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.http.ResponseEntity;
+import org.springframework.stereotype.Service;
 
+@Service
 public class PropertyDetailServiceImpl implements PropertyDetailService {
+
     @Autowired
     private PropertyDetailRepository propertyDetailRepository;
 
@@ -18,33 +22,37 @@ public class PropertyDetailServiceImpl implements PropertyDetailService {
     private PropertyRepository propertyRepository;
 
     @Override
-    public Page<PropertyDetail> getAllPropertyDetails(Pageable pageable){
-        return propertyDetailRepository.findAll(pageable);
+    public PropertyDetail getPropertyDetailByPropertyId(Long propertyId){
+        return propertyDetailRepository.findByPropertyId(propertyId)
+                .orElseThrow(() -> new ResourceNotFoundException("Property has not property detail"));
     }
 
 
     @Override
-    public PropertyDetail createPropertyDetail(PropertyDetail propertyDetail){
+    public PropertyDetail createPropertyDetail(Long propertyId,PropertyDetail propertyDetail){
+        Property property = propertyRepository.findById(propertyId)
+                .orElseThrow(()->new ResourceNotFoundException("Property","Id",propertyId));
+        propertyDetail.setProperty(property);
         return propertyDetailRepository.save(propertyDetail);
     }
 
     @Override
-    public PropertyDetail updatePropertyDetail(Long propertyDetailId, PropertyDetail propertyDetailRequest){
-        PropertyDetail propertyDetail = propertyDetailRepository.findById(propertyDetailId)
-                .orElseThrow(()-> new ResourceNotFoundException("PropertyDetail","Id",propertyDetailId));
+    public PropertyDetail updatePropertyDetail(Long propertyId, PropertyDetail propertyDetailRequest){
+        PropertyDetail propertyDetail = getPropertyDetailByPropertyId(propertyId);
+
         propertyDetail.setBathrooms(propertyDetailRequest.getBathrooms());
         propertyDetail.setKitchens(propertyDetailRequest.getKitchens());
         propertyDetail.setLivingRooms(propertyDetailRequest.getLivingRooms());
         propertyDetail.setPrice(propertyDetailRequest.getPrice());
         propertyDetail.setRooms(propertyDetailRequest.getRooms());
         propertyDetail.setSquareMeters(propertyDetailRequest.getSquareMeters());
+
         return propertyDetailRepository.save(propertyDetail);
     }
 
     @Override
-    public ResponseEntity<?> deletePropertyDetail(Long propertyDetailId){
-        PropertyDetail propertyDetail = propertyDetailRepository.findById(propertyDetailId)
-                .orElseThrow(()-> new ResourceNotFoundException("PropertyDetail","Id",propertyDetailId));
+    public ResponseEntity<?> deletePropertyDetail(Long propertyId){
+        PropertyDetail propertyDetail = getPropertyDetailByPropertyId(propertyId);
         propertyDetailRepository.delete(propertyDetail);
         return ResponseEntity.ok().build();
     }

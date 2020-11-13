@@ -6,5 +6,5 @@ import org.springframework.data.jpa.repository.JpaRepository;
 import java.util.Optional;
 
 public interface LessorRepository extends JpaRepository<Lessor, Long>{
-    public Optional<Lessor> findByDni(String dni);
+    Optional<Lessor> findByDni(String dni);
 }

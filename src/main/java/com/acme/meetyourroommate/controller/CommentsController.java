@@ -33,7 +33,7 @@ public class CommentsController {
     @Autowired
     private CommentService commentService;
 
-    @Operation(summary = "Get Comments By Ad", description = "Get Comments associated to given Comments", tags = {"ads"})
+    @Operation(summary = "Get Comments By Ad", description = "Get Comments associated to given Comments", tags = {"comments"})
     @GetMapping("properties/{propertyId}/ads/{adId}/comments")
     public Page<CommentResource> getAllCommentsByAdId(
             @PathVariable Long adId, Pageable pageable) {

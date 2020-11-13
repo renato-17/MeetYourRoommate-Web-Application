@@ -1,7 +1,6 @@
 package com.acme.meetyourroommate.controller;
 
 import com.acme.meetyourroommate.domain.model.PropertyResource;
-import com.acme.meetyourroommate.domain.repository.PropertyResourceRepository;
 import com.acme.meetyourroommate.domain.service.PropertyResourceService;
 import com.acme.meetyourroommate.resource.PropertyResourceResource;
 import com.acme.meetyourroommate.resource.SavePropertyResourceResource;
@@ -25,13 +24,13 @@ public class PropertyResourcesController {
     @Autowired
     private ModelMapper mapper;
 
-
+    @Autowired
     private PropertyResourceService propertyResourceService;
 
     @Operation(summary = "Get PropertyResources", description = "Get PropertyResources", tags = {"propertyResources"})
-    @GetMapping("/propertyresources")
-    public Page<PropertyResourceResource> getAllPropertyResources(Pageable pageable){
-        Page<PropertyResource> propertyResourcesPage = propertyResourceService.getAllPropertyResources(pageable);
+    @GetMapping("/properties/{propertyId}/property-details/property-resources")
+    public Page<PropertyResourceResource> getAllPropertyResources(@PathVariable Long propertyId,Pageable pageable){
+        Page<PropertyResource> propertyResourcesPage = propertyResourceService.getAllPropertyResourcesByPropertyId(propertyId,pageable);
         List<PropertyResourceResource> resources = propertyResourcesPage.getContent()
                 .stream()
                 .map(this::convertToResource)
@@ -40,23 +39,29 @@ public class PropertyResourcesController {
     }
 
     @Operation(summary = "Create PropertyResource", description = "Create a new PropertyResource", tags = {"propertyResources"})
-    @PostMapping("/propertyresources")
-    public PropertyResourceResource createPropertyResource(@Valid @RequestBody SavePropertyResourceResource resource) {
+    @PostMapping("/properties/{propertyId}/property-details/property-resources")
+    public PropertyResourceResource createPropertyResource(
+            @PathVariable Long propertyId,
+            @Valid @RequestBody SavePropertyResourceResource resource) {
         PropertyResource propertyResource = convertToEntity(resource);
-        return convertToResource(propertyResourceService.createPropertyResource(propertyResource));
+        return convertToResource(propertyResourceService.createPropertyResource(propertyId,propertyResource));
     }
 
     @Operation(summary = "Update PropertyResource", description = "Update PropertyResource with given Id", tags = {"propertyResources"})
-    @PutMapping("/propertyresources/{propertyResourceId}")
-    public PropertyResourceResource updatePropertyResource(@PathVariable Long resourceId, @Valid @RequestBody SavePropertyResourceResource resource) {
+    @PutMapping("/properties/{propertyId}/property-details/property-resources/{propertyResourceId}")
+    public PropertyResourceResource updatePropertyResource(
+            @PathVariable(name = "propertyId") Long propertyId,
+            @PathVariable(name = "propertyResourceId") Long propertyResourceId,
+            @Valid @RequestBody SavePropertyResourceResource resource) {
         PropertyResource propertyResource = convertToEntity(resource);
-        return convertToResource(propertyResourceService.updatePropertyResource(resourceId,propertyResource));
+        return convertToResource(propertyResourceService.updatePropertyResource(propertyId,propertyResourceId,propertyResource));
     }
 
     @Operation(summary = "Delete PropertyResource", description = "Delete PropertyResource with given Id", tags = {"propertyResources"})
-    @DeleteMapping("/propertyresources/{propertyResourceId}")
-    public ResponseEntity<?> deletePropertyResource(@PathVariable Long propertyResourceId){
-        return propertyResourceService.deletePropertyResource(propertyResourceId);
+    @DeleteMapping("/properties/{propertyId}/property-details/property-resources/{propertyResourceId}")
+    public ResponseEntity<?> deletePropertyResource(@PathVariable(name = "propertyId") Long propertyId,
+                                                    @PathVariable(name = "propertyResourceId") Long propertyResourceId){
+        return propertyResourceService.deletePropertyResource(propertyId,propertyResourceId);
     }
 
 

@@ -67,7 +67,7 @@ public class TasksController {
     }
 
     @Operation(summary = "Create detail Task", description = "Create detail an existing Task", tags = {"tasks"})
-    @PostMapping("/teams/{teamId}/tasks/{taskId}")
+    @PatchMapping("/teams/{teamId}/tasks/{taskId}")
     public TaskResource finishTask(
             @PathVariable(name = "teamId") Long teamId,
             @PathVariable(name = "taskId") Long taskId){

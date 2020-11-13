@@ -12,14 +12,10 @@ import org.springframework.http.ResponseEntity;
 public interface PropertyService {
 
     Page<Property> getAllProperties(Pageable pageable);
-
-    Property getPropertyById(Long propertyId);
-
-    Property createProperty(Property property);
-
-    Property updateProperty(Long propertyId, Property propertyRequest);
-
-    ResponseEntity<?> deleteProperty(Long propertyId);
-
+    Page<Property> getAllByLessorId(Long lessorId, Pageable pageable);
+    Property getPropertyByIdAndLessorId(Long lessorId,Long propertyId);
+    Property createProperty(Long lessorId, Property property);
+    Property updateProperty(Long lessorId, Long propertyId, Property propertyRequest);
+    ResponseEntity<?> deleteProperty(Long lessorId,Long propertyId);
     Property getPropertyByAddress(String address);
 }

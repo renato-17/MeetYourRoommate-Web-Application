@@ -6,8 +6,8 @@ import org.springframework.data.domain.Pageable;
 import org.springframework.http.ResponseEntity;
 
 public interface PropertyDetailService {
-    Page<PropertyDetail> getAllPropertyDetails(Pageable pageable);
-    PropertyDetail createPropertyDetail(PropertyDetail propertyDetail);
-    PropertyDetail updatePropertyDetail(Long propertyDetailId, PropertyDetail propertyDetailRequest);
-    ResponseEntity<?> deletePropertyDetail(Long propertyDetailId);
+    PropertyDetail getPropertyDetailByPropertyId(Long propertyId);
+    PropertyDetail createPropertyDetail(Long propertyId,PropertyDetail propertyDetail);
+    PropertyDetail updatePropertyDetail(Long propertyId, PropertyDetail propertyDetailRequest);
+    ResponseEntity<?> deletePropertyDetail(Long propertyId);
 }

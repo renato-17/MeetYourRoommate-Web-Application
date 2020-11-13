@@ -1,7 +1,9 @@
 package com.acme.meetyourroommate.service;
 
 import com.acme.meetyourroommate.domain.model.Campus;
+import com.acme.meetyourroommate.domain.model.StudyCenter;
 import com.acme.meetyourroommate.domain.repository.CampusRepository;
+import com.acme.meetyourroommate.domain.repository.StudyCenterRepository;
 import com.acme.meetyourroommate.domain.service.CampusService;
 import com.acme.meetyourroommate.exception.ResourceNotFoundException;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -15,26 +17,31 @@ public class CampusServiceImpl implements CampusService {
 
     @Autowired
     private CampusRepository campusRepository;
+    @Autowired
+    private StudyCenterRepository studyCenterRepository;
 
     @Override
-    public Page<Campus> getAllCampuses(Pageable pageable){
-        return campusRepository.findAll(pageable);
+    public Page<Campus> getAllCampusesByStudyCenterId(Long studyCenterId,Pageable pageable){
+        return campusRepository.findByStudyCenterId(studyCenterId,pageable);
     }
 
     @Override
-    public Campus getCampusesById(Long campusId){
-        return campusRepository.findById(campusId)
+    public Campus getCampusesByIdAndStudyCenterId(Long studyCenterId,Long campusId){
+        return campusRepository.findByIdAndStudyCenterId(studyCenterId,campusId)
                 .orElseThrow(()-> new ResourceNotFoundException("Campus","Id",campusId));
     }
 
     @Override
-    public Campus createCampuses(Campus campus){
-        return campusRepository.save(campus);
+    public Campus createCampuses(Long studyCenterId,Campus campus){
+        return studyCenterRepository.findById(studyCenterId).map(studyCenter -> {
+            campus.setStudyCenter(studyCenter);
+            return campusRepository.save(campus);
+        }).orElseThrow(()-> new ResourceNotFoundException("Study Center","Id",studyCenterId));
     }
 
     @Override
-    public Campus updateCampuses(Long campusId, Campus campusRequest){
-        Campus campus = campusRepository.findById(campusId)
+    public Campus updateCampuses(Long studyCenterId,Long campusId, Campus campusRequest){
+        Campus campus = campusRepository.findByIdAndStudyCenterId(studyCenterId,campusId)
                 .orElseThrow(()->new ResourceNotFoundException("Campus","Id",campusId));
         campus.setName(campusRequest.getName());
         campus.setAddress(campusRequest.getAddress());
@@ -43,8 +50,8 @@ public class CampusServiceImpl implements CampusService {
     }
 
     @Override
-    public ResponseEntity<?> deleteCampuses(Long campusId){
-        Campus campus = campusRepository.findById(campusId)
+    public ResponseEntity<?> deleteCampuses(Long studyCenterId, Long campusId){
+        Campus campus = campusRepository.findByIdAndStudyCenterId(studyCenterId,campusId)
                 .orElseThrow(()->new ResourceNotFoundException("Campus", "Id", campusId));
         campusRepository.delete(campus);
         return ResponseEntity.ok().build();

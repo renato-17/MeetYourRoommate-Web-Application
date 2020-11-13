@@ -50,7 +50,9 @@ public class SaveStudentResource {
     private String hobbies;
 
     @NotNull
-    private Boolean bSmoker;
+    private Boolean smoker;
+    private Long campusId;
+    private Long studyCenterId;
 
     public String getFirstName() {
         return firstName;
@@ -141,12 +143,27 @@ public class SaveStudentResource {
 
     }
 
-    public Boolean getbSmoker() {
-        return bSmoker;
+    public Boolean getSmoker() {
+        return smoker;
     }
 
-    public SaveStudentResource setbSmoker(Boolean bSmoker) {
-        this.bSmoker = bSmoker;
-        return this;
+    public void setSmoker(Boolean smoker) {
+        this.smoker = smoker;
+    }
+
+    public Long getCampusId() {
+        return campusId;
+    }
+
+    public void setCampusId(Long campusId) {
+        this.campusId = campusId;
+    }
+
+    public Long getStudyCenterId() {
+        return studyCenterId;
+    }
+
+    public void setStudyCenterId(Long studyCenterId) {
+        this.studyCenterId = studyCenterId;
     }
 }

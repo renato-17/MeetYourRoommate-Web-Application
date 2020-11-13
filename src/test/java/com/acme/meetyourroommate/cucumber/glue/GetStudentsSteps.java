@@ -87,6 +87,6 @@ public class GetStudentsSteps {
         Assertions.assertEquals(expected.getAddress(), actual.getAddress());
         Assertions.assertEquals(expected.getDescription(), actual.getDescription());
         Assertions.assertEquals(expected.getHobbies(), actual.getHobbies());
-        Assertions.assertEquals(expected.getbSmoker(), actual.getbSmoker());
+        Assertions.assertEquals(expected.getSmoker(), actual.getSmoker());
     }
 }
