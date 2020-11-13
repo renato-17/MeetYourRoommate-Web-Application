@@ -1,8 +1,10 @@
 package com.acme.meetyourroommate.resource;
 
+import com.acme.meetyourroommate.domain.model.AuditModel;
+
 import java.util.Date;
 
-public class PropertyResourceResource {
+public class PropertyResourceResource extends AuditModel {
     private Long id;
     private String type;
     private Date date;

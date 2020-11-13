@@ -4,27 +4,27 @@ import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotNull;
 
 public class SavePropertyDetailResource {
-    @NotBlank
+
     @NotNull
     private int rooms;
 
-    @NotBlank
+
     @NotNull
     private int bathrooms;
 
-    @NotBlank
+
     @NotNull
     private int squareMeters;
 
-    @NotBlank
+
     @NotNull
     private int kitchens;
 
-    @NotBlank
+
     @NotNull
     private int livingrooms;
 
-    @NotBlank
+
     @NotNull
     private float price;
 

@@ -66,7 +66,7 @@ public class TasksController {
         return convertToResource(taskService.updateTask(teamId,taskId,task));
     }
 
-    @Operation(summary = "Create detail Task", description = "Create detail an existing Task", tags = {"tasks"})
+    @Operation(summary = "Finish Task", description = "Finish an existing Task", tags = {"tasks"})
     @PatchMapping("/teams/{teamId}/tasks/{taskId}")
     public TaskResource finishTask(
             @PathVariable(name = "teamId") Long teamId,
