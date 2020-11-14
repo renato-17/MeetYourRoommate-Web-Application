@@ -6,9 +6,9 @@ import org.springframework.data.domain.Pageable;
 import org.springframework.http.ResponseEntity;
 
 public interface CampusService {
-    Page<Campus> getAllCampuses(Pageable pageable);
-    Campus getCampusesById(Long campusId);
-    Campus createCampuses(Campus campus);
-    Campus updateCampuses(Long campusId, Campus campusRequest);
-    ResponseEntity<?> deleteCampuses(Long campusId);
+    Page<Campus> getAllCampusesByStudyCenterId(Long studyCenterId,Pageable pageable);
+    Campus getCampusesByIdAndStudyCenterId(Long studyCenterId,Long campusId);
+    Campus createCampuses(Long studyCenterId,Campus campus);
+    Campus updateCampuses(Long studyCenterId, Long campusId, Campus campusRequest);
+    ResponseEntity<?> deleteCampuses(Long studyCenterId,Long campusId);
 }

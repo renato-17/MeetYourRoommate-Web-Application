@@ -2,11 +2,14 @@ package com.acme.meetyourroommate.controller;
 
 import com.acme.meetyourroommate.domain.model.Property;
 import com.acme.meetyourroommate.domain.service.PropertyService;
+import com.acme.meetyourroommate.resource.CampusResource;
 import com.acme.meetyourroommate.resource.PropertyResource;
 import com.acme.meetyourroommate.resource.SavePropertyResource;
-import com.acme.meetyourroommate.resource.StudentResource;
+import com.fasterxml.jackson.core.JsonProcessingException;
 import io.swagger.v3.oas.annotations.Operation;
-import io.swagger.v3.oas.annotations.tags.Tag;
+import io.swagger.v3.oas.annotations.media.Content;
+import io.swagger.v3.oas.annotations.responses.ApiResponse;
+import io.swagger.v3.oas.annotations.responses.ApiResponses;
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
@@ -19,18 +22,20 @@ import javax.validation.Valid;
 import java.util.List;
 import java.util.stream.Collectors;
 
-@Tag(name = "properties",description = "Properties API")
 @RestController
 @RequestMapping("/api")
 public class PropertiesController {
 
     @Autowired
     private ModelMapper mapper;
-
     @Autowired
     private PropertyService propertyService;
 
-    @Operation(summary = "Get Properties", description = "Get all properties", tags = {"properties"})
+
+    @Operation(summary = "Get Properties", description = "Get All Properties by Pages", tags = {"properties"})
+    @ApiResponses(value = {
+            @ApiResponse(responseCode = "200", description = "All Properties returned", content = @Content(mediaType = "application/json"))
+    })
     @GetMapping("/properties")
     public Page<PropertyResource> getAllProperties(Pageable pageable) {
         Page<Property> propertiesPage = propertyService.getAllProperties(pageable);
@@ -41,29 +46,38 @@ public class PropertiesController {
         return new PageImpl<>(resources, pageable, resources.size());
     }
 
-    @GetMapping("/properties/{propertyId}")
-    public PropertyResource getStudentByDni(@PathVariable Long propertyId){
-        return convertToResource(propertyService.getPropertyById(propertyId));
-    }
-    
-    @Operation(summary = "Create a Property", description = "Create a new Property", tags = {"properties"})
-    @PostMapping("/properties")
-    public PropertyResource createProperty(@Valid @RequestBody SavePropertyResource resource) {
-        Property property = convertToEntity(resource);
-        return convertToResource(propertyService.createProperty(property));
+    @Operation(summary = "Get Property", description = "Get Property", tags = {"properties"})
+    @GetMapping("/lessors/{lessorId}/properties/{propertyId}")
+    public PropertyResource getPropertyByIdAndLessorId(
+            @PathVariable(name = "lessorId") Long lessorId,
+            @PathVariable(name = "propertyId") Long propertyId
+    ){
+        return convertToResource(propertyService.getPropertyByIdAndLessorId(lessorId,propertyId));
     }
 
-    @Operation(summary = "Update a Property", description = "Update an existing Property", tags = {"properties"})
-    @PutMapping("/properties/{propertyId}")
-    public PropertyResource updateProperty(@PathVariable Long propertyId, @RequestBody SavePropertyResource resource) {
+    @Operation(summary = "Create Property", description = "Create a new Property", tags = {"properties"})
+    @PostMapping("/lessors/{lessorId}/properties")
+    public PropertyResource createProperty(@PathVariable Long lessorId,@Valid @RequestBody SavePropertyResource resource) {
         Property property = convertToEntity(resource);
-        return convertToResource(propertyService.updateProperty(propertyId, property));
+        return convertToResource(propertyService.createProperty(lessorId,property));
     }
 
-    @Operation(summary = "Delete a Property", description = "Delete an existing Property", tags = {"properties"})
-    @DeleteMapping("/properties/{propertyId}")
-    public ResponseEntity<?> deleteProperty(@PathVariable Long propertyId) {
-        return propertyService.deleteProperty(propertyId);
+
+    @Operation(summary = "Update Property", description = "Update Property for given Id", tags = {"properties"})
+    @PutMapping("/lessors/{lessorId}/properties/{propertyId}")
+    public PropertyResource updateProperty(
+            @PathVariable(name = "lessorId") Long lessorId,
+            @PathVariable(name = "propertyId") Long propertyId,
+            @Valid @RequestBody SavePropertyResource resource) {
+        Property property = convertToEntity(resource);
+        return convertToResource(propertyService.updateProperty(lessorId,propertyId, property));
+    }
+
+    @Operation(summary = "Delete Property", description = "Delete Properties with given Id", tags = {"properties"})
+    @DeleteMapping("/lessors/{lessorId}/properties/{propertyId}")
+    public ResponseEntity<?> deleteProperty(@PathVariable(name = "lessorId") Long lessorId,
+                                            @PathVariable(name = "propertyId") Long propertyId) {
+        return propertyService.deleteProperty(lessorId,propertyId);
     }
 
     private Property convertToEntity(SavePropertyResource resource) {

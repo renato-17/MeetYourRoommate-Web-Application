@@ -1,5 +1,7 @@
 package com.acme.meetyourroommate.resource;
 
+import org.springframework.beans.factory.annotation.Required;
+
 import javax.persistence.Lob;
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotNull;
@@ -20,15 +22,17 @@ public class SavePropertyResource {
         return address;
     }
 
-    public void setAddress(String address) {
+    public SavePropertyResource setAddress(String address) {
         this.address = address;
+        return this;
     }
 
     public String getDescription() {
         return description;
     }
 
-    public void setDescription(String description) {
+    public SavePropertyResource setDescription(String description) {
         this.description = description;
+        return this;
     }
 }

@@ -26,10 +26,12 @@ import java.util.stream.Collectors;
 @RestController
 @RequestMapping("/api")
 public class ReservationsController {
+
     @Autowired
     private ModelMapper mapper;
     @Autowired
     private ReservationService reservationService;
+
     @Operation(summary = "Get all Reservations", description = "Get all reservation", tags = {"reservations"})
     @GetMapping("/reservations")
     public Page<ReservationResource> getAllReservations(Pageable pageable){

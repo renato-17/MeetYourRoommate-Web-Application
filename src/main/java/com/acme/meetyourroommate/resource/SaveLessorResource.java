@@ -46,56 +46,63 @@ public class SaveLessorResource {
         return firstName;
     }
 
-    public void setFirstName(String firstName) {
+    public SaveLessorResource setFirstName(String firstName) {
         this.firstName = firstName;
+        return this;
     }
 
     public String getLastName() {
         return lastName;
     }
 
-    public void setLastName(String lastName) {
+    public SaveLessorResource setLastName(String lastName) {
         this.lastName = lastName;
+        return this;
     }
 
     public String getDni() {
         return dni;
     }
 
-    public void setDni(String dni) {
+    public SaveLessorResource setDni(String dni) {
         this.dni = dni;
+        return this;
     }
 
     public String getPhoneNumber() {
         return phoneNumber;
     }
 
-    public void setPhoneNumber(String phoneNumber) {
+    public SaveLessorResource setPhoneNumber(String phoneNumber) {
         this.phoneNumber = phoneNumber;
+        return this;
     }
 
     public String getGender() {
         return gender;
     }
 
-    public void setGender(String gender) {
+    public SaveLessorResource setGender(String gender) {
         this.gender = gender;
+        return this;
     }
 
     public Date getBirthdate() {
         return birthdate;
     }
 
-    public void setBirthdate(Date birthdate) {
+    public SaveLessorResource setBirthdate(Date birthdate) {
         this.birthdate = birthdate;
+        return this;
     }
 
     public String getAddress() {
         return address;
     }
 
-    public void setAddress(String address) {
+    public SaveLessorResource setAddress(String address) {
         this.address = address;
+        return this;
     }
 
     public Boolean getPremium() {
@@ -106,4 +113,3 @@ public class SaveLessorResource {
         this.premium = premium;
     }
 }
-

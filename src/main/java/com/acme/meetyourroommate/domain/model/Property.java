@@ -1,13 +1,12 @@
 package com.acme.meetyourroommate.domain.model;
 
 
-
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
 
 @Entity
 @Table(name = "properties")
-public class Property extends AuditModel{
+public class Property {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -19,6 +18,10 @@ public class Property extends AuditModel{
 
     @NotNull
     private String description;
+
+    @ManyToOne(fetch = FetchType.LAZY, optional = false)
+    @JoinColumn(name = "lessor_id", nullable = false)
+    private Lessor lessor;
 
     public Long getId() {
         return id;
@@ -45,5 +48,13 @@ public class Property extends AuditModel{
     public Property setDescription(String description) {
         this.description = description;
         return this;
+    }
+
+    public Lessor getLessor() {
+        return lessor;
+    }
+
+    public void setLessor(Lessor lessor) {
+        this.lessor = lessor;
     }
 }

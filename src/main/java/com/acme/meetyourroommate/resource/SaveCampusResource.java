@@ -20,15 +20,18 @@ public class SaveCampusResource {
         return name;
     }
 
-    public void setName(String name) {
+    public SaveCampusResource setName(String name) {
         this.name = name;
+        return this;
     }
 
     public String getAddress() {
         return address;
     }
 
-    public void setAddress(String address) {
+    public SaveCampusResource setAddress(String address) {
         this.address = address;
+        return this;
+
     }
 }

@@ -1,6 +1,9 @@
 package com.acme.meetyourroommate.service;
 
+import com.acme.meetyourroommate.domain.model.Ad;
+import com.acme.meetyourroommate.domain.model.Lessor;
 import com.acme.meetyourroommate.domain.model.Property;
+import com.acme.meetyourroommate.domain.repository.LessorRepository;
 import com.acme.meetyourroommate.domain.repository.PropertyRepository;
 import com.acme.meetyourroommate.domain.service.PropertyService;
 import com.acme.meetyourroommate.exception.ResourceNotFoundException;
@@ -16,6 +19,8 @@ public class PropertyServiceImpl implements PropertyService {
 
     @Autowired
     private PropertyRepository propertyRepository;
+    @Autowired
+    private LessorRepository lessorRepository;
 
     @Override
     public Page<Property> getAllProperties(Pageable pageable) {
@@ -23,32 +28,46 @@ public class PropertyServiceImpl implements PropertyService {
     }
 
     @Override
-    public Property getPropertyById(Long propertyId) {
-        return propertyRepository.findById(propertyId)
-                .orElseThrow(() ->
-        new ResourceNotFoundException("Property", "Id", propertyId));
+    public Page<Property> getAllByLessorId(Long lessorId, Pageable pageable) {
+        return propertyRepository.findAllByLessorId(lessorId,pageable);
     }
 
     @Override
-    public Property createProperty(Property property) {
+    public Property getPropertyByIdAndLessorId(Long lessorId,Long propertyId) {
+        return propertyRepository.findByIdAndLessorId(propertyId,lessorId)
+                .orElseThrow(() ->
+                        new ResourceNotFoundException("Property", "Id", propertyId));
+    }
+
+    @Override
+    public Property createProperty(Long lessorId,Property property) {
+        Lessor lessor = lessorRepository.findById(lessorId).orElseThrow(
+                ()->new ResourceNotFoundException("Lessor","Id",lessorId)
+        );
+        property.setLessor(lessor);
         return propertyRepository.save(property);
     }
 
     @Override
-    public Property updateProperty(Long propertyId, Property propertyRequest) {
-        Property property = propertyRepository.findById(propertyId)
-                .orElseThrow(() -> new ResourceNotFoundException(
-                        "PropertyId","Id",propertyId));
+    public Property updateProperty(Long lessorId,Long propertyId, Property propertyRequest) {
+        Property property = getPropertyByIdAndLessorId(lessorId,propertyId);
+
         property.setAddress(propertyRequest.getAddress());
         property.setDescription(propertyRequest.getDescription());
         return propertyRepository.save(property);
     }
 
     @Override
-    public ResponseEntity<?> deleteProperty(Long propertyId) {
-        Property property =propertyRepository.findById(propertyId)
-                .orElseThrow(()->new ResourceNotFoundException("Property", "Id", propertyId));
+    public ResponseEntity<?> deleteProperty(Long lessorId,Long propertyId) {
+        Property property = getPropertyByIdAndLessorId(lessorId,propertyId);
         propertyRepository.delete(property);
         return ResponseEntity.ok().build();
     }
+
+    @Override
+    public Property getPropertyByAddress(String address) {
+        return propertyRepository.findByAddress(address)
+                .orElseThrow(() -> new ResourceNotFoundException("Property", "Address", address));
+    }
+
 }

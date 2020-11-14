@@ -1,8 +1,7 @@
 package com.acme.meetyourroommate.resource;
 
-import com.acme.meetyourroommate.domain.model.AuditModel;
 
-public class PropertyResource extends AuditModel {
+public class PropertyResource {
     private Long id;
     private String address;
     private String description;
@@ -11,23 +10,26 @@ public class PropertyResource extends AuditModel {
         return id;
     }
 
-    public void setId(Long id) {
+    public PropertyResource setId(Long id) {
         this.id = id;
+        return this;
     }
 
     public String getAddress() {
         return address;
     }
 
-    public void setAddress(String address) {
+    public PropertyResource setAddress(String address) {
         this.address = address;
+        return this;
     }
 
     public String getDescription() {
         return description;
     }
 
-    public void setDescription(String description) {
+    public PropertyResource setDescription(String description) {
         this.description = description;
+        return this;
     }
 }

@@ -8,13 +8,15 @@ import org.springframework.context.annotation.Configuration;
 
 @Configuration
 public class OpenApiConfiguration {
-    @Bean(name = "MeetYourRoommateOpenApi")
-    public OpenAPI bloggingOpenApi() {
+    @Bean(name = "meetyourroommateOpenApi")
+    public OpenAPI meetyourroommateOpenApi() {
         return new OpenAPI()
                 .components(new Components())
-                .info(new Info().title("MeetYourRoommate Application API")
+                .info(new Info()
+                        .title("MeetYourRoommate Application API")
                         .description(
                                 "MeetYourRoommate API implemented with Spring Boot RESTful service and documented using springdoc-openapi and OpenAPI 3.0"));
 
     }
+
 }

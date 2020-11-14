@@ -30,7 +30,7 @@ public class LessorServiceImpl implements LessorService {
     @Override
     public Lessor getLessorByDni(String lessorDni) {
         return lessorRepository.findByDni(lessorDni)
-                .orElseThrow(()->new ResourceNotFoundException("Lessor", "Dni", lessorDni));
+                .orElseThrow(()->new ResourceNotFoundException("Lessor", "Id", lessorDni));
     }
 
     @Override

@@ -14,7 +14,8 @@ public class SaveStudyCenterResource {
         return name;
     }
 
-    public void setName(String name) {
+    public SaveStudyCenterResource setName(String name) {
         this.name = name;
+        return this;
     }
 }
