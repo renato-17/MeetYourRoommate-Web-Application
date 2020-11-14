@@ -43,7 +43,7 @@ public class LessorsController {
 
     @Operation(summary = "Get Lessors by Id", description = "Get Lessors by Id", tags = {"lessors"})
     @GetMapping("/lessors/{lessorId}")
-    public StudentResource getStudentById(@PathVariable Long lessorId){
+    public LessorResource getStudentById(@PathVariable Long lessorId){
         return convertToResource(lessorService.getLessorById(lessorId));
     }
 
