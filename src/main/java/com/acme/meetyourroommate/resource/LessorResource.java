@@ -11,7 +11,7 @@ public class LessorResource {
     private String gender;
     private Date birthdate;
     private String address;
-    private Boolean bPremium;
+    private Boolean premium;
 
     public Long getId() {
         return id;
@@ -91,13 +91,11 @@ public class LessorResource {
 
     }
 
-    public Boolean getbPremium() {
-        return bPremium;
+    public Boolean getPremium() {
+        return premium;
     }
 
-    public LessorResource setbPremium(Boolean bPremium) {
-        this.bPremium = bPremium;
-        return this;
-
+    public void setPremium(Boolean premium) {
+        this.premium = premium;
     }
 }

@@ -4,6 +4,7 @@ import com.acme.meetyourroommate.domain.model.Lessor;
 import com.acme.meetyourroommate.domain.service.LessorService;
 import com.acme.meetyourroommate.resource.LessorResource;
 import com.acme.meetyourroommate.resource.SaveLessorResource;
+import com.acme.meetyourroommate.resource.StudentResource;
 import io.swagger.v3.oas.annotations.Operation;
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -38,6 +39,12 @@ public class LessorsController {
                 .collect(Collectors.toList());
 
         return new PageImpl<>(resources,pageable, resources.size());
+    }
+
+    @Operation(summary = "Get Lessors by Id", description = "Get Lessors by Id", tags = {"lessors"})
+    @GetMapping("/lessors/{lessorId}")
+    public StudentResource getStudentById(@PathVariable Long lessorId){
+        return convertToResource(lessorService.getLessorById(lessorId));
     }
 
     @Operation(summary = "Create Lessor", description = "Create a new lessor", tags = {"lessors"})
