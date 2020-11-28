@@ -24,6 +24,7 @@ public class Person {
     protected String dni;
 
     @NotNull
+    @Column(unique = true)
     protected String phoneNumber;
 
     @NotNull
@@ -34,6 +35,16 @@ public class Person {
 
     @NotNull
     protected String address;
+
+    @NotNull
+    protected  Boolean type;
+
+    @NotNull
+    @Column(unique = true)
+    protected  String mail;
+
+    @NotNull
+    protected  String password;
 
     public Long getId() {
         return id;
@@ -97,6 +108,30 @@ public class Person {
 
     public void setAddress(String address) {
         this.address = address;
+    }
+
+    public Boolean getType() {
+        return type;
+    }
+
+    public void setType(Boolean type) {
+        this.type = type;
+    }
+
+    public String getMail() {
+        return mail;
+    }
+
+    public void setMail(String mail) {
+        this.mail = mail;
+    }
+
+    public String getPassword() {
+        return password;
+    }
+
+    public void setPassword(String password) {
+        this.password = password;
     }
 }
 

@@ -9,12 +9,11 @@ public class SaveReservationDetailResource {
     private float amount;
     @NotNull
     private float downpayment;
+
     @NotNull
     private Long studentId;
     @NotNull
     private Long lessorId;
-    @NotNull
-    private Long reservationId;
 
     @NotNull
     private Long propertyId;
@@ -50,14 +49,6 @@ public class SaveReservationDetailResource {
 
     public void setLessorId(Long lessorId) {
         this.lessorId = lessorId;
-    }
-
-    public Long getReservationId() {
-        return reservationId;
-    }
-
-    public void setReservationId(Long reservationId) {
-        this.reservationId = reservationId;
     }
 
     public Long getPropertyId() {

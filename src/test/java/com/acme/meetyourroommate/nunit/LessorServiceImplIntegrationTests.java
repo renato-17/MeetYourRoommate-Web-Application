@@ -59,7 +59,7 @@ public class LessorServiceImplIntegrationTests {
     public void whenGetLessorByDniWithInvalidDniThenReturnsResourceNotFoundException() {
        //Arrange
         String dni = "12345678";
-        String template = "Resource %snot found for %s with value %s";
+        String template = "Resource %s not found for %s with value %s";
         when(lessorRepository.findByDni(dni))
                .thenReturn(Optional.empty());
        String expectedMessage = String.format(template, "Lessor", "Id", dni);

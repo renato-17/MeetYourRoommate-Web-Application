@@ -41,9 +41,9 @@ public class ReservationDetailServiceImpl implements ReservationDetailService {
     @Override
     public ReservationDetail createReservationDetail(Long studentId, Long lessorId, Long propertyId, Long reservationId, ReservationDetail reservationDetail) {
         Student student = studentRepository.findById(studentId).orElseThrow(()->new ResourceNotFoundException("Student","Id",studentId));
-        Lessor lessor = lessorRepository.findById(studentId).orElseThrow(()->new ResourceNotFoundException("Lessor","Id",lessorId));
-        Property property = propertyRepository.findById(studentId).orElseThrow(()->new ResourceNotFoundException("Property","Id",propertyId));
-        Reservation reservation = reservationRepository.findById(studentId).orElseThrow(()->new ResourceNotFoundException("Reservation","Id",reservationId));
+        Lessor lessor = lessorRepository.findById(lessorId).orElseThrow(()->new ResourceNotFoundException("Lessor","Id",lessorId));
+        Property property = propertyRepository.findById(propertyId).orElseThrow(()->new ResourceNotFoundException("Property","Id",propertyId));
+        Reservation reservation = reservationRepository.findById(reservationId).orElseThrow(()->new ResourceNotFoundException("Reservation","Id",reservationId));
 
         reservationDetail.setStudent(student);
         reservationDetail.setLessor(lessor);

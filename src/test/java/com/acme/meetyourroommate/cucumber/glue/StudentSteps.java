@@ -22,6 +22,7 @@ public class StudentSteps {
     
     @LocalServerPort
     private String port;
+
     private final RestTemplate restTemplate = new RestTemplate();
     private final String postUrl = "http://localhost";
 

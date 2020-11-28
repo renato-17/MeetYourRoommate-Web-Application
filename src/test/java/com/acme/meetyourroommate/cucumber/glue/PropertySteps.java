@@ -30,14 +30,13 @@ public class PropertySteps {
         newProperty = new SavePropertyResource();
         newProperty.setAddress(arg0);
         newProperty.setDescription(arg1);
-
         assertNotNull(newProperty);
     }
 
     @When("I select the option post property")
     public void iSelectTheOptionPostProperty() {
 
-        String url = postUrl + ":" + port + "api/properties";
+        String url = postUrl + ":" + port + "api/lessors/1/properties";
         property = restTemplate.postForObject(url,newProperty,PropertyResource.class);
         assert property != null;
         assertEquals(property.getAddress(),newProperty.getAddress());
@@ -46,7 +45,7 @@ public class PropertySteps {
 
     @Then("I should be able to see my property posted")
     public void iShouldBeAbleToSeeMyPropertyPosted() {
-        String url = postUrl + ":" + port + "/api/properties/" + property.getId();
+        String url = postUrl + ":" + port + "/api/lessors/1/properties/" + property.getId();
         PropertyResource expectedProperty = restTemplate.getForObject(url, PropertyResource.class);
 
         assert expectedProperty != null;

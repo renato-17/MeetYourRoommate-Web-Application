@@ -3,6 +3,7 @@ package com.acme.meetyourroommate.nunit;
 import com.acme.meetyourroommate.domain.model.Ad;
 import com.acme.meetyourroommate.domain.model.Property;
 import com.acme.meetyourroommate.domain.repository.AdRepository;
+import com.acme.meetyourroommate.domain.repository.LessorRepository;
 import com.acme.meetyourroommate.domain.repository.PropertyRepository;
 import com.acme.meetyourroommate.domain.service.PropertyService;
 import com.acme.meetyourroommate.exception.ResourceNotFoundException;
@@ -26,6 +27,9 @@ import static org.mockito.Mockito.when;
 public class PropertyServiceImplIntegrationTest {
     @MockBean
     private PropertyRepository propertyRepository;
+
+    @MockBean
+    private LessorRepository lessorRepository;
 
     @Autowired
     private PropertyService propertyService;
@@ -62,7 +66,7 @@ public class PropertyServiceImplIntegrationTest {
     public void whenGetPropertyByAddressWithInvalidAddressThenReturnsResourceNotFoundException() {
         //Arrange
         String address = "Av. Ica 123";
-        String template = "Resource %snot found for %s with value %s";
+        String template = "Resource %s not found for %s with value %s";
         when(propertyRepository.findByAddress(address))
                 .thenReturn(Optional.empty());
         String expectedMessage = String.format(template, "Property", "Address", address);

@@ -33,8 +33,8 @@ public class PropertyDetail extends AuditModel{
     @NotNull
     private float price;
 
-    @OneToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "property_id", referencedColumnName = "id")
+    @OneToOne(fetch = FetchType.LAZY, optional = false)
+    @JoinColumn(name = "property_id", nullable = false)
     @OnDelete(action = OnDeleteAction.CASCADE)
     private Property property;
 

@@ -38,9 +38,15 @@ public class SaveLessorResource {
     @Size(max = 100)
     private String address;
 
+    @NotNull
+    @NotBlank
+    @Size(max = 50)
+    private String mail;
 
     @NotNull
-    private Boolean premium;
+    @NotBlank
+    @Size(max = 50)
+    private String password;
 
     public String getFirstName() {
         return firstName;
@@ -105,11 +111,19 @@ public class SaveLessorResource {
         return this;
     }
 
-    public Boolean getPremium() {
-        return premium;
+    public String getMail() {
+        return mail;
     }
 
-    public void setPremium(Boolean premium) {
-        this.premium = premium;
+    public void setMail(String mail) {
+        this.mail = mail;
+    }
+
+    public String getPassword() {
+        return password;
+    }
+
+    public void setPassword(String password) {
+        this.password = password;
     }
 }

@@ -45,7 +45,6 @@ public class CampusServiceImpl implements CampusService {
                 .orElseThrow(()->new ResourceNotFoundException("Campus","Id",campusId));
         campus.setName(campusRequest.getName());
         campus.setAddress(campusRequest.getAddress());
-        campus.setStudyCenter(campusRequest.getStudyCenter());
         return campusRepository.save(campus);
     }
 

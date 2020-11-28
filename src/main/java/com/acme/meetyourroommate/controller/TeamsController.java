@@ -40,9 +40,9 @@ public class TeamsController {
     }
 
     @Operation(summary = "Get a team by Name", description = "Get team by Name", tags = {"teams"})
-    @GetMapping("/teams/{teamName}")
-    public TeamResource getTeamByName(@PathVariable String name){
-        Team team = teamService.getTeamByName(name);
+    @GetMapping("/teams/find-name/{teamName}")
+    public TeamResource getTeamByName(@PathVariable String teamName){
+        Team team = teamService.getTeamByName(teamName);
         return convertToResource(team);
     }
 
@@ -51,6 +51,13 @@ public class TeamsController {
     public TeamResource getTeamByStudentId(@PathVariable Long studentId){
         return convertToResource(teamService.getTeamByStudentId(studentId));
     }
+
+    @Operation(summary = "Get a team by id", description = "Get an existing team", tags = {"teams"})
+    @GetMapping("/teams/{teamId}")
+    public TeamResource getTeamById(@PathVariable Long teamId){
+        return convertToResource(teamService.getTeamById(teamId));
+    }
+
 
     @Operation(summary = "Create a team", description = "Create a new Team", tags = {"teams"})
     @PostMapping("/teams")

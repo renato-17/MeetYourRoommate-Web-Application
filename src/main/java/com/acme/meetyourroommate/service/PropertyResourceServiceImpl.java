@@ -50,7 +50,7 @@ public class PropertyResourceServiceImpl implements PropertyResourceService {
         PropertyDetail propertyDetail = propertyDetailRepository.findByPropertyId(propertyId)
                 .orElseThrow(()->new ResourceNotFoundException("Property has not found Property Details"));
 
-        PropertyResource propertyResource = propertyResourceRepository.findByIdAndPropertyDetailId(propertyDetail.getId(),propertyResourceId)
+        PropertyResource propertyResource = propertyResourceRepository.findByIdAndPropertyDetailId(propertyResourceId,propertyDetail.getId())
                 .orElseThrow(()->new ResourceNotFoundException("PropertyResource", "Id", propertyResourceId));
         propertyResource.setType(propertyResourceRequest.getType());
         return propertyResourceRepository.save(propertyResource);

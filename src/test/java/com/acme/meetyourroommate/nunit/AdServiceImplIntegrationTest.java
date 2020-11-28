@@ -66,7 +66,7 @@ public class AdServiceImplIntegrationTest {
     public void whenGetAdByTitleWithInvalidTitleThenReturnsResourceNotFoundException() {
         //Arrange
         String title = "Alquiler de Departamento";
-        String template = "Resource %snot found for %s with value %s";
+        String template = "Resource %s not found for %s with value %s";
         when(adRepository.findByTitle(title))
                 .thenReturn(Optional.empty());
         String expectedMessage = String.format(template, "Ad", "Title", title);

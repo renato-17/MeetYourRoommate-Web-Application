@@ -35,6 +35,8 @@ public class LessorServiceImpl implements LessorService {
 
     @Override
     public Lessor createLessor(Lessor lessor) {
+        lessor.setPremium(false);
+        lessor.setType(false);
         return lessorRepository.save(lessor);
     }
 
@@ -46,7 +48,6 @@ public class LessorServiceImpl implements LessorService {
         lessor.setLastName(lessorRequest.getLastName());
         lessor.setPhoneNumber(lessorRequest.getPhoneNumber());
         lessor.setAddress(lessorRequest.getAddress());
-        lessor.setPremium(lessorRequest.getPremium());
 
         return lessorRepository.save(lessor);
     }
