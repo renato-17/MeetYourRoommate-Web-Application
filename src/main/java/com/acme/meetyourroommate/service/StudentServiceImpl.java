@@ -48,6 +48,7 @@ public class StudentServiceImpl implements StudentService {
     public Student createStudent(Long studyCenterId,Long campusId,Student student) {
         Campus campus = campusRepository.findByIdAndStudyCenterId(campusId,studyCenterId)
                 .orElseThrow(()-> new ResourceNotFoundException("Campus","Id",campusId));
+
         student.setType(true);
         student.setCampus(campus);
         return studentRepository.save(student);

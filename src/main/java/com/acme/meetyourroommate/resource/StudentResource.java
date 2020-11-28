@@ -15,6 +15,17 @@ public class StudentResource {
     private String hobbies;
     private Boolean smoker;
 
+    public String getMail() {
+        return mail;
+    }
+
+    public void setMail(String mail) {
+        this.mail = mail;
+    }
+
+    private String mail;
+
+
     public Long getId() {
         return id;
     }
