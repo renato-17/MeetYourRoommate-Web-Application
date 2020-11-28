@@ -46,6 +46,17 @@ public class PropertiesController {
         return new PageImpl<>(resources, pageable, resources.size());
     }
 
+    @Operation(summary = "Get Properties by lessor", description = "Get All Properties by Lessor", tags = {"properties"})
+    @GetMapping("/lessor/{lessorId}/properties")
+    public Page<PropertyResource> getAllPropertiesByLessorId(@PathVariable Long lessorId, Pageable pageable) {
+        Page<Property> propertiesPage = propertyService.getAllByLessorId(lessorId,pageable);
+        List<PropertyResource> resources = propertiesPage.getContent()
+                .stream()
+                .map(this::convertToResource)
+                .collect(Collectors.toList());
+        return new PageImpl<>(resources, pageable, resources.size());
+    }
+
     @Operation(summary = "Get Property", description = "Get Property", tags = {"properties"})
     @GetMapping("/lessors/{lessorId}/properties/{propertyId}")
     public PropertyResource getPropertyByIdAndLessorId(
