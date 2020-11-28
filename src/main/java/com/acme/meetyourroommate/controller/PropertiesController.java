@@ -81,10 +81,12 @@ public class PropertiesController {
     }
 
     private Property convertToEntity(SavePropertyResource resource) {
+        //mapper.getConfiguration().setAmbiguityIgnored(true);
         return mapper.map(resource, Property.class);
     }
 
     private PropertyResource convertToResource(Property entity) {
+        //mapper.getConfiguration().setAmbiguityIgnored(true);
         return mapper.map(entity, PropertyResource.class);
     }
 }

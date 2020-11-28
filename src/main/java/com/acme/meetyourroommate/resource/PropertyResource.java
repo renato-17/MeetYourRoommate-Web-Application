@@ -6,6 +6,17 @@ public class PropertyResource {
     private String address;
     private String description;
 
+    private LessorResource lessor;
+
+
+    public LessorResource getLessor() {
+        return lessor;
+    }
+
+    public void setLessor(LessorResource lessor) {
+        this.lessor = lessor;
+    }
+
     public Long getId() {
         return id;
     }
